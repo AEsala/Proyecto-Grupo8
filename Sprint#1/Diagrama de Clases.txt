@@ -1,0 +1,11 @@
+Clases: Superadministrador, Docente y Estudiante.
+
+Super clase: Usuario
+class usuario {
+   id
+   nombre
+   apellido
+   email
+   password
+   cargo/rol
+}
