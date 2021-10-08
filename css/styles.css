@@ -1,0 +1,36 @@
+div.component {
+    margin: auto;
+    width: 1000px;
+    padding: 40px;
+    background-color: #E8F0F2;
+}
+
+div.form {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    background-color: #FFFFFF;
+}
+
+/* Crear Actividad */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+h1.title {
+    color: #053742;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+input[type="text"],
+textarea#description {
+    border: 1px solid #053742;
+    background-color: #E8F0F2;
+}
+
+div.barTools {
+    display: flex;
+    justify-content: flex-start;
+    background-color: #053742;
+}
+button[type="button"] {
+    color: white;
+}
