@@ -9,7 +9,8 @@ div.component {
 h1 {
     text-align: center;
     color: #053742;
-    font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 div.info {
     padding: 20px;
@@ -21,7 +22,8 @@ div.info {
 
 p {
     color: #053742;
-    font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 input{
@@ -29,6 +31,7 @@ input{
 }
 
 label {
+    
     display: inline-block;
     width: 150px;
 }
@@ -37,6 +40,7 @@ label {
     background-color: rgb(24, 113, 230);
     color: white;
     font-family: 'Source Sans Pro', sans-serif;
+    border: rgb(24, 113, 230);
 }
 
 
