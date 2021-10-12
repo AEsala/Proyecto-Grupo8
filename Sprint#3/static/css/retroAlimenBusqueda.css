@@ -39,7 +39,7 @@ label {
 .button{
     background-color: rgb(24, 113, 230);
     color: white;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: rgb(24, 113, 230);
 }
 
