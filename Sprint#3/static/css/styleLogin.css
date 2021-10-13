@@ -1,6 +1,7 @@
 
 * {
     font-family: verdana, arial, helvetica;
+    overflow:hidden;
 }
 body{
     margin:0;
@@ -76,9 +77,8 @@ h1{
 #main{  
     position: relative;  
     background-color:#A2DBFA;
-    padding: 45px;
+    padding: 25px;
     border-radius:15px;
-    border:60px;
     float:right;
     margin-top: 40px;
     margin-right: 30px;
@@ -89,9 +89,20 @@ div.mainDocente{
     position: relative;  
     z-index: 1;
     background-color: beige;
-    padding: 45px;
+    padding: 18px;
     border-radius:15px;
-    border:50px;
+    float:right;
+    margin-top: 40px;
+    margin-right: 30px;
+    align-items: center;
+
+}
+#mainEstudiante{  
+    position: relative;  
+    z-index: 1;
+    background-color: #779fb4;
+    padding: 18px;
+    border-radius:15px;
     float:right;
     margin-top: 40px;
     margin-right: 30px;
@@ -103,13 +114,16 @@ div.mainDocente{
 }
 #image{
    position: center;
-    width: 100px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
   
   }
  h3{
      text-align: center;
  } 
 #send{
-    text-align: center;   
+
+    text-align: center;
+    
+
 }
