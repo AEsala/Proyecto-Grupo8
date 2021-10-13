@@ -11,20 +11,20 @@
 </head>
 <body class="estudiante">
     <h1>Estudiantes</h1>
-    <div id='main'>
+    <div id='mainEstudiante'>
         <div class="encabezado">
         <img id="image" src="{{  url_for('static',  filename='img/uam.png')  }}" alt="actualice la pagina">
-        <h4><i>Recuerda usar tu correo institucional</i></h4>
+        <h5><i>Recuerda usar tu correo institucional</i></h5>
         <h4>Iniciar sesión</h4>
         </div>
         <form action="" methods="POST" name="formregistro">
             <!-- estas son las referencias para el fomulario.py -->
-            <p style="font-size:larger ;">
+            <p style="font-size:medium ;">
                 <!-- este form es el que esta definido en app.py -->
                 {{ form.usuario.label }}</p>
                 {{ form.usuario(size=25)}}<br />
             
-            <p style="font-size:larger ;">
+            <p style="font-size:medium ;">
                 {{ form.password.label }}</p>  
                 {{ form.password(size=25)}}
                 <!-- checkbox que nos permite activar o desactivar la opcion -->
@@ -33,6 +33,7 @@
                 &nbsp;&nbsp;Mostrar Contraseña</h5>      
             </p>
             <div id='send'>
+            
                 {{ form.inicio_sesion(size=30 )}}
             </div>
         </form>
