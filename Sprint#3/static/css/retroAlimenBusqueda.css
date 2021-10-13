@@ -28,6 +28,8 @@ p {
 
 input{
     background-color:  #E8F0F2;
+    /* border-style: unset; */
+    border-color: #053742;
 }
 
 label {
@@ -44,6 +46,12 @@ label {
 }
 img{
     margin-right: 20px;
+}
+aside{
+    float: right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 50px;
+
 }
 
 
