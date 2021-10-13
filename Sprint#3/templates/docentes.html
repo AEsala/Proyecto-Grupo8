@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block contenido %}
+<head>
+    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleTabs.css')  }}">
+</head>
+<header>
+    <h4>Docentes</h4>
+</header>
+    <div id='contador'>
+    <p>
+        <b>    Cantidad de Docentes </b><br>
+        aqui va el enlace al numero de cursos en la base de datos
+    </p>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apeliidos</th>
+            <th scope="col">Cedula</th>
+            <th scope="col">Curso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>1029312</td>
+            <td>Matematicas</td>
+     
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>1209121</td>
+            <td>Ingles</td>
+     
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>Bird</td>
+            <td>10932012</td>
+            <td>Programacion</td>
+          </tr>
+        </tbody>
+      </table>
+    
+    {% endblock %}

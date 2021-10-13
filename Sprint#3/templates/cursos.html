@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block contenido %}
+<head>
+    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleTabs.css')  }}">
+</head>
+<header>
+    <h4>Cursos</h4>
+</header>
+    <div id='contador'>
+    <p>
+        <b>    Cantidad de cursos </b><br>
+        aqui va el enlace al numero de cursos en la base de datos
+    </p>
+    </div>
+    <br>
+    <br>
+    <a class="boton" href="http://laweb.com" target="_blank">Crear curso</a>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Profesor</th>
+            <td scope="col">N° Estudiantes</td>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Matematicas</td>
+            <td>Otto Diaz</td>
+            <td>32</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Ingles</td>
+            <td>Andres Thornton</td>
+            <td>12</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Programacion</td>
+            <td>Michale Bird </td>
+            <td>10</td>
+          
+          </tr>
+        </tbody>
+      </table>
+
+    
+    {% endblock %}
