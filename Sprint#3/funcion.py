@@ -20,4 +20,4 @@ class registro(FlaskForm):
 class login(Form):
     usuario=StringField('Usuario :',validators=[DataRequired(message='No dejar vacío, completar')])
     password=PasswordField('Contraseña :',validators=[DataRequired(message='No dejar vacío, completar')])
-    # inicio_sesion=SubmitField('Iniciar Sesión')
+    inicio_sesion=SubmitField('Iniciar Sesión')
