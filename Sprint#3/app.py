@@ -55,18 +55,21 @@ def registrar():
 
 #Mockups docente
 
-@app.route('/docente/buscarActividad')
+@app.route('/DashBoard-Administrativo/docentes/buscarActividad',methods=['GET', 'POST'])
 def index():
     return render_template("buscarActividad.html")
 
-@app.route('/docente/buscarActividad/retroalimentarActividad')
+@app.route('/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad',methods=['GET','POST'])
 def resultado():
     return render_template("retroActividad.html")        
 
-@app.route('/docente/buscar')
+@app.route('/DashBoard-Administrativo/docentes/buscar')
 def buscar():
     return render_template("paginaBuscar.html")
 
+@app.route('/DashBoard-Administrativo/docentes/buscar/resultados')
+def mostrarRes():
+    return render_template("resultadosBusqueda.html")
 
 if __name__=="__main__":
     print("Entro al main")
