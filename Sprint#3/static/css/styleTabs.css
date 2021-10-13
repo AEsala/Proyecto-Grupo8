@@ -1,0 +1,128 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+    font-family: verdana, arial, helvetica;
+
+}
+#contador{
+    width: 750px;
+    text-align: center;
+    background-color:#E8F0F2;
+    padding: 14px ;
+    border-radius:10px;
+    margin:auto;
+    display: block ;
+}
+.boton{
+    margin-left: 45%;
+    border: 1px solid #39A2D8; /*anchura, estilo y color borde*/
+    padding: 10px; /*espacio alrededor texto*/
+    background-color: #053742; /*color botón*/
+    color: #ffffff; /*color texto*/
+    text-decoration: none; /*decoración texto*/
+    text-transform: uppercase; /* capitalización texto  */
+    /* font-family: 'Helvetica', sans-serif; tipografía texto */
+    border-radius: 50px; /*bordes redondos*/
+}
+.boton:hover{
+    color: #0b1b24;
+    background-color: #ffffff;
+}
+#contadorO{
+    text-align: center;
+    margin:auto;
+    display: block ;
+}
+.container{
+    display: block;
+    width: 760px;
+    column-count: 3;
+    background-color:#E8F0F2;
+    padding: 14px ;
+    border-radius:10px;
+    margin: 0 auto;
+}
+
+
+.wrap {
+	margin: auto;
+	max-width: 450px;
+	width: 55%;
+}
+
+.principal {
+    margin:auto;
+	background: #E8F0F2;
+	border-top: 20px solid #053742;
+    border-radius: 10px;
+	color: #fff;
+	padding: 40px 0;
+	width: 60%;
+}
+
+.principal .formulario {
+	color: #212121;
+	text-align: center;
+}
+
+.principal .formulario input[type=text] {
+	margin-bottom: 20px;
+	padding: 10px;
+	width: 100%;
+}
+
+.principal .formulario input[type=text].error {
+	border: 5px solid #053742;
+	color: black;
+}
+
+.principal .formulario .boton {
+	background: #053742;
+	border: 1px solid black;
+	color: #FAFAFA;
+	display: inline-block;
+	font-size: 12px;
+	padding: 8px;
+}
+
+.principal .formulario .boton:hover {
+    color: #0b1b24;
+    background-color: #ffffff;
+}
+
+/* - Tareas - */
+.tareas .lista {
+	list-style: none;
+}
+
+.tareas .lista li {
+	border-bottom: 1px solid #B6B6B6;
+}
+
+.tareas .lista li a {
+    text-align: center;
+	color: #212121;
+	display: block;
+	padding: 17px 0;
+	text-decoration: none;
+}
+
+.tareas .lista li a:hover {
+	text-decoration: line-through;
+}
+h6{
+    text-align:center;
+}
+.table{
+    margin-top:100px;
+    margin-left: 310px;
+    width: 750px;
+	border: 1px solid black;
+	display:table;
+	font-size: 12px;
+	padding: 46px;
+
+}
