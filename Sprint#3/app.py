@@ -7,7 +7,9 @@ def index():
     return render_template("buscarActividad.html")
 
 @app.route('/docente/buscarActividad/retroalimentarActividad')
-def reultado():
+def resultado():
     return render_template("retroActividad.html")        
 
-
+@app.route('/docente/buscar')
+def buscar():
+    return render_template("paginaBusqueda.html")
