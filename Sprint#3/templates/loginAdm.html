@@ -19,13 +19,13 @@
         <form action="/DashBoard-Administrativo" methods="POST" name="formLogin">
             <!-- estas son las referencias para el fomulario.py -->
             <!-- {{ form.csrf_token() }} -->
-            <p style="font-size:larger ;">
+            <p style="font-size:medium ;">
                 <!-- este form es el que esta definido en app.py -->
                 
                 {{ form.usuario.label }}</p>
                 {{ form.usuario(size=25)}}<br />
             
-            <p style="font-size:larger ;">
+            <p style="font-size:medium ;">
                 {{ form.password.label }}</p>  
                 {{ form.password(size=25)}}
                 <!-- checkbox que nos permite activar o desactivar la opcion -->
