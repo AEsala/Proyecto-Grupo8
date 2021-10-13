@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block contenido %}
+    <head>
+        <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleRegistro.css')  }}">
+    </head>
+    <h4>Registrar</h4>
+    <form action="" methods="POST" name="formregistro">
+        <!-- estas son las referencias para el fomulario.py -->
+        <div id='main'>
+            <div class='container'>
+                <div id='divisionA'>
+                    <p>
+                        <!-- este form es el que esta definido en app.py -->
+                        {{ form.nombre.label }}<br />
+                        {{ form.nombre(size=30)}}<br />
+                    </p>
+                    <p>
+                        {{ form.apellido.label }}<br />
+                        {{ form.apellido(size=30)}}<br />
+                    </p>
+                    <p>
+                        {{ form.cedula.label }}<br />
+                        {{ form.cedula(size=30)}}<br />
+                    </p>
+                </div>
+                <div id='divisionB'>
+                    <p>
+                        {{ form.direccion.label }}<br />
+                        {{ form.direccion(size=30)}}<br />
+                    </p>
+                    <p>
+                        {{ form.email.label }}<br />
+                        {{ form.email(size=30)}}<br />
+                    </p>
+                    <p>
+                        {{ form.celular.label }}<br />
+                        {{ form.celular(size=30)}}<br />
+                    </p>
+                </div>
+                <p>
+                    <label for="sex"> Sexo : <br>
+                        <input type="radio" id="sex" name="sex" value="h"> Hombre <br>
+                        <input type="radio" id="sex" name="sex" value="m" /> Mujer
+                </p>
+                <p>
+                    Tipo de usuario :
+                    <select id="lista1" name="entradalista1">
+                        <optgroup>
+                            <option selected="selected">...</option>
+                            <option>Estudiante</option>
+                            <option>Docente</option>
+                        </optgroup>
+    
+                    </select>
+                </p>
+            </div>
+            <div id='send'>
+                <br>
+                <br>
+                {{ form.enviar(size=30 )}}<br />
+            </div>
+    
+    </form>
+    </div>
+    {% endblock %}

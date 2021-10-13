@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Docentes</title>
+
+    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleLogin.css')  }}">
+
+</head>
+<body class="docente">
+    <h1>Docentes</h1>
+    <div class='mainDocente'>
+        <div class="encabezado">
+        <img id="image" src="{{  url_for('static',  filename='img/uam.png')  }}" alt="actualice la pagina">
+        <h4><i>Recuerda usar tu correo institucional</i></h4>
+        <h4>Iniciar sesión</h4>
+        </div>
+        <form action="" methods="POST" name="formregistro">
+            <!-- estas son las referencias para el fomulario.py -->
+            <p style="font-size:larger ;">
+                <!-- este form es el que esta definido en app.py -->
+                {{ form.usuario.label }}</p>
+                {{ form.usuario(size=25)}}<br />
+            
+            <p style="font-size:larger ;">
+                {{ form.password.label }}</p>  
+                {{ form.password(size=25)}}
+                <!-- checkbox que nos permite activar o desactivar la opcion -->
+                <h5> 
+                <input type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña" />
+                &nbsp;&nbsp;Mostrar Contraseña</h5>      
+            </p>
+            <div id='send'>
+                <br>
+                {{ form.inicio_sesion(size=30 )}}
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

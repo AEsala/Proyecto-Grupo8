@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block contenido %}
+<head>
+    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleTabs.css')  }}">
+</head>
+<header>
+    <h4>Overview</h4>
+</header>
+<div class="container">
+    <div id='contadorO'>
+        <p>
+            <b> Cantidad de Estudiantes </b><br>
+            aqui va el enlace al numero de Estudiantes en la base de datos
+        </p>
+    </div>
+
+    <div id='contadorO'>
+        <p>
+            <b> Cantidad de Docentes </b><br>
+            aqui va el enlace al numero de Docentes en la base de datos
+        </p>
+    </div>
+
+    <div id='contadorO'>
+        <p>
+            <b> Cantidad de Cursos </b><br>
+            aqui va el enlace al numero de cursos en la base de datos
+        </p>
+    </div>
+</div>
+
+<br>
+<br>
+<h6>Tareas pendientes </h6>
+<div class="principal">
+    <div class="wrap">
+        <form class="formulario" action="">
+            <input type="text" id="tareaInput" placeholder="Agregar tarea">
+            <input type="button" class="boton" id="btn-agregar" value="Agregar Tarea">
+        </form>
+    </div>
+</div>
+
+<div class="tareas">
+    <div class="wrap">
+        <ul class="lista" id="lista">
+            <li><a href="#">1 Lorem ipsum dolor sit amet.</a></li>
+            <li><a href="#">2 Lorem ipsum dolor sit amet.</a></li>
+
+        </ul>
+    </div>
+</div>
+{% endblock %}
