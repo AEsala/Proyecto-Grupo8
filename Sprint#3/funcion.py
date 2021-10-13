@@ -3,11 +3,6 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, length,InputRequired
 
-class form_estudiante(FlaskForm):
-    nombre =StringField('Nombre', validators=[DataRequired(message='No dejar vacío, completar')])
-    correo =EmailField('Correo',validators=[DataRequired(message='No dejar vacío, completar')])
-    mensaje =StringField('Mensaje',validators=[DataRequired(message='No dejar vacío, completar')])
-    enviar=SubmitField('Enviar',)
 
 class registro(FlaskForm):
     nombre =StringField('Nombres :',validators=[DataRequired(message='No dejar vacío, completar')])
