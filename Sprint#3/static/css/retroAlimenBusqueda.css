@@ -22,13 +22,13 @@ div.info {
 
 p {
     color: #053742;
-    /* font-family: 'Source Sans Pro', sans-serif; */
+     font-family: 'Source Sans Pro', sans-serif; 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 input{
     background-color: #E8F0F2;
-    /* border-style: unset; */
+     border-style: unset; 
     border-color: #053742;
 }
 
@@ -61,5 +61,18 @@ textarea{
     background-color: #E8F0F2;
 }
 
+.busca{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.volver{
+    text-align: center;
+    background-color: rgb(24, 113, 230);
+    color: white;
+    margin-top: 35px;
+    
+    
+}
 
 
