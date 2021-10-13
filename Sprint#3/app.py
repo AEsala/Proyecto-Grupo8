@@ -12,4 +12,4 @@ def resultado():
 
 @app.route('/docente/buscar')
 def buscar():
-    return render_template("paginaBusqueda.html")
+    return render_template("paginaBuscar.html")
