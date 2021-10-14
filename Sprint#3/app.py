@@ -1,3 +1,4 @@
+from types import MethodDescriptorType
 from flask import Flask ,app,render_template
 from funcion import registro,login
 import os
@@ -55,21 +56,25 @@ def registrar():
 
 #Mockups docente
 
+
+
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad',methods=['GET', 'POST'])
-def index():
+def buscarActiRetro():
     return render_template("buscarActividad.html")
 
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad',methods=['GET','POST'])
-def resultado():
+def retroalimentar():
     return render_template("retroActividad.html")        
 
-@app.route('/DashBoard-Administrativo/docentes/buscar')
+@app.route('/DashBoard-Administrativo/docentes/buscar', methods=['GET', 'POST'])
 def buscar():
     return render_template("paginaBuscar.html")
 
-@app.route('/DashBoard-Administrativo/docentes/buscar/resultados')
+@app.route('/DashBoard-Administrativo/docentes/buscar/resultados', methods=['GET','POST'])
 def mostrarRes():
     return render_template("resultadosBusqueda.html")
+
+#mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
 
 if __name__=="__main__":
     print("Entro al main")
