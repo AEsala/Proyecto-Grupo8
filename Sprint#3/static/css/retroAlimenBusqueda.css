@@ -63,7 +63,7 @@ textarea{
 
 .busca{
     text-align: center;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .volver{
@@ -71,8 +71,13 @@ textarea{
     background-color: rgb(24, 113, 230);
     color: white;
     margin-top: 35px;
-    
-    
+     
+}
+
+  .resultados{
+    background-color: #E8F0F2;
+    width: 550px;
+    height: 150px;
 }
 
 
