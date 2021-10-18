@@ -18,8 +18,8 @@
         </div>
         <form action="/DashBoard-Administrativo" methods="POST" name="formLogin">
             <!-- estas son las referencias para el fomulario.py -->
-            <!-- {{ form.csrf_token() }} -->
-            <p style="font-size:medium ;">
+                {{ form.csrf_token() }} 
+                <p style="font-size:medium ;">
                 <!-- este form es el que esta definido en app.py -->
                 
                 {{ form.usuario.label }}</p>
