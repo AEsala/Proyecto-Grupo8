@@ -6,17 +6,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Buscador</title>
+    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleTabs.css')  }}">
 </head>
 <body>
-    <div id="ctn-icono-busqueda" >
-        <i class="fas fa-search"  id="icono-busqueda"></i>
-      </div>
+  <h4>Buscador</h4>
+  <div class="containerBuscador">
+  
     <div id="ctn-barra-busqueda">
-        <input type="text" name="" id="entradaBusqueda" placeholder="¿Qué deseas buscar?">
+      <input type="text" name="" id="entradaBusqueda" placeholder="Digita la cedula">
+    </div>
+
+    <div id="ctn-icono-busqueda">
+      <i class="fas fa-search" id="icono-busqueda"></i>
+    </div>
+
+    <form action="" method="post">
+      <div class="radio">
+        <p>
+          Tipo de usuario :<br>
+          <input type="radio" name="usuario" value="profesor"> Profesores
+          <input type="radio" name="usuario" value="estudiantes"> Estudiantes<br>
+        </p>
       </div>
+  
+      <p id="botonbuscar"><input type="submit" value="Buscar"></p>
+      <p id="listaCursos">
+        Curso :
+        <select id="lista" name="entradalista1">
+          <optgroup>
+            <option selected="selected">...</option>
+            <option>Matematicas</option>
+            <option>Fisica</option>
+          </optgroup>
+  
+        </select>
+      </p>
+    </form>
+  
+  <div class="containerBuscador2">
+    <form action="" method="get">
+  
+      Nombres: <input type="text" id="nombre" name="nombre" />
+      </p>
+  
+      <p>
+        Apellidos: <input type="text" id="apellidos" name="apellidos" maxlength="50" />
+      </p>
+  
+      <p>
+        Curso: <input type="text" id="correo" name="correo" maxlength="100" />
+      </p>
+      <div id="edicion">    
+      <p><input type="submit" value="Editar"></p>
+      <p><input type="submit" value="Eliminar"></p>
+      <p><input type="submit" value="Guardar"></p>
+    </div>
+
+  
+  
+    </form>
+  </div>
+</div>
+  
     
 </body>
 </html>
 
-{% endblock 
+{% endblock %}

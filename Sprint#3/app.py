@@ -54,8 +54,8 @@ def registrar():
     form=registro()
     return render_template('registrar.html',form=form)
 
-@app.route('/DashBoard-Administrativo/buscar',methods=['GET','POST'])
-def buscar():
+@app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
+def buscador():
     return render_template('buscar-Pro-Est.html')
 
 #Mockups docente
