@@ -21,6 +21,7 @@
             <!-- estas son las referencias para el fomulario.py -->
             <p style="font-size:medium ;">
                 <!-- este form es el que esta definido en app.py -->
+                {{ form.csrf_token() }} 
                 {{ form.usuario.label }}</p>
                 {{ form.usuario(size=25)}}<br />
             
