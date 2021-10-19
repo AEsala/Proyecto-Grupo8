@@ -46,7 +46,6 @@
     margin: 0 auto;
 }
 
-
 .wrap {
 	margin: auto;
 	max-width: 450px;
@@ -113,6 +112,7 @@
 .tareas .lista li a:hover {
 	text-decoration: line-through;
 }
+
 h6{
     text-align:center;
 }
