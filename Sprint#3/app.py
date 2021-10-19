@@ -15,6 +15,7 @@ def index():
 def loginA(): 
     form=login()  
     if form.validate_on_submit():
+
 		    return render_template('base.html')
     return render_template('loginAdm.html', form=form)
 
