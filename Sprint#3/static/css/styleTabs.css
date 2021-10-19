@@ -179,5 +179,15 @@ div.containerBuscador2{
     margin-top: 100px;
 }
 #edicion{
+    margin-top: 30px;
     column-count: 3;
+    margin-left: 100px;
+}
+
+div.tablaBuscador {
+    display: flex;
+    text-align: center;
+margin-top: -70px;
+    margin-left: -310px;
+
 }
