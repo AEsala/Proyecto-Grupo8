@@ -12,7 +12,8 @@ class registro(FlaskForm):
     email=EmailField('Correo :',validators=[DataRequired(message='No dejar vacío, completar')])
     celular=StringField('Celular :',validators=[DataRequired(message='No dejar vacío, completar')])
     enviar=SubmitField('Registrar')
-class login(Form):
+
+class login(FlaskForm):
     usuario=StringField('Usuario :',validators=[DataRequired(message='No dejar vacío, completar')])
     password=PasswordField('Contraseña :',validators=[DataRequired(message='No dejar vacío, completar')])
     inicio_sesion=SubmitField('Iniciar Sesión')

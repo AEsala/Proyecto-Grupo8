@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Administrador</title>
-
-    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleLogin.css')  }}">
-
-</head>
-<body>
+{% block loginAdmin %}
     <h1>ADMINISTRADOR</h1>
     <div id='main'>
         <div class="encabezado">
@@ -18,7 +7,6 @@
         </div>
         <form action="/DashBoard-Administrativo" methods="POST" name="formLogin">
             <!-- estas son las referencias para el fomulario.py -->
-            <!-- {{ form.csrf_token() }} -->
             <p style="font-size:medium ;">
                 <!-- este form es el que esta definido en app.py -->
                 
@@ -38,6 +26,4 @@
             </div>
         </form>
     </div>
-
-</body>
-</html>
+{% endblock %}

@@ -1,6 +1,5 @@
-from types import MethodDescriptorType
 from flask import Flask ,app,render_template
-from funcion import registro,login
+from funcion import registro, login
 import os
 
 app = Flask(__name__) 
