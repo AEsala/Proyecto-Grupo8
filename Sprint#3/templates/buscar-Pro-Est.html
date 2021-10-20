@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador</title>
+    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleTabs.css')  }}">
+</head>
+<body>
+  <h4>Buscador</h4>
+  <div class="containerBuscador">
+  
+    <div id="ctn-barra-busqueda">
+      <input type="text" name="" id="entradaBusqueda" placeholder="Digita la cedula">
+    </div>
+
+    <div id="ctn-icono-busqueda">
+      <i class="fas fa-search" id="icono-busqueda"></i>
+    </div>
+
+    <form action="" method="post">
+      <div class="radio">
+        <p>
+          Tipo de usuario :<br>
+          <input type="radio" name="usuario" value="profesor"> Profesores
+          <input type="radio" name="usuario" value="estudiantes"> Estudiantes<br>
+        </p>
+      </div>
+  
+      <p id="botonbuscar"><input type="submit" value="Buscar"></p>
+    </form>
+  
+  <div class="containerBuscador2">
+    <form action="" method="get">
+      <div class="tablaBuscador">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apeliidos</th>
+            <th scope="col">Cedula</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>1029312</td>
+            <td>Curso</td>
+            <td>4.2</td>
+          </tr>
+          <tr>
+         
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>1209121</td>
+            <td>Curso</td>
+            <td>3.4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <div id="edicion">    
+      <p><input type="submit" value="Editar"></p>
+      <p><input type="submit" value="Eliminar"></p>
+      <p><input type="submit" value="Guardar"></p>
+    </div>
+
+  
+  
+    </form>
+  </div>
+</div>
+  
+    
+</body>
+</html>
+
+{% endblock %}

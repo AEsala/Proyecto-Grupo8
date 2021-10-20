@@ -46,7 +46,6 @@
     margin: 0 auto;
 }
 
-
 .wrap {
 	margin: auto;
 	max-width: 450px;
@@ -113,6 +112,7 @@
 .tareas .lista li a:hover {
 	text-decoration: line-through;
 }
+
 h6{
     text-align:center;
 }
@@ -124,5 +124,66 @@ h6{
 	display:table;
 	font-size: 12px;
 	padding: 46px;
+
+}
+
+/* Buscador de contenido */
+.containerBuscador{
+    display: block;
+    margin-top: 30px;
+    margin-left: 310px;
+    width: 750px;
+    background-color:#E8F0F2;
+    padding: 14px ;
+    border-radius:10px;
+   
+}
+#ctn-barra-busqueda{
+    position: relative;
+    top: 20px;
+    width: 75%;
+    margin: auto;  
+}
+#ctn-icono-busqueda{
+    position: absolute;
+    margin-left: 320px;
+    margin-top: -5px;
+    justify-content:center;
+    align-items: center;
+}
+#ctn-icono-busqueda i{
+    font-size:18px;
+    color:#777777;
+    cursor:pointer;
+    transition: all 300ms;
+}
+#ctn-icono-busqueda i:hover {
+    color: rgb(97, 97, 194);
+}
+div.radio{
+    position: relative;
+    top: 30px;
+    margin-left: 80px;
+}
+#botonbuscar{
+    position: relative;
+    margin-top: -70px;
+    margin-left: 400px;
+}
+
+div.containerBuscador2{ 
+    margin-top: 100px;
+}
+#edicion{
+    margin-top: 30px;
+    column-count: 3;
+    margin-left: 100px;
+}
+
+div.tablaBuscador {
+    display: flex;
+    text-align: center;
+margin-top: -70px;
+    margin-left: -310px;
 
 }

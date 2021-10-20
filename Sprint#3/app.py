@@ -15,6 +15,7 @@ def index():
 def loginA(): 
     form=login()  
     if form.validate_on_submit():
+
 		    return render_template('base.html')
     return render_template('loginAdm.html', form=form)
 
@@ -53,6 +54,10 @@ def cursos():
 def registrar():
     form=registro()
     return render_template('registrar.html',form=form)
+
+@app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
+def buscador():
+    return render_template('buscar-Pro-Est.html')
 
 #Mockups docente
 
