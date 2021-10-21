@@ -64,7 +64,7 @@ def docentes():
 def cursos():
     return render_template('cursos.html')
 
-@app.route('/DashBoard-Administrativo/registrar',methods=['GET','POST'])
+@app.route('/DashBoard-Administrativo/registrar')
 def registrar():
     form=registro()
     return render_template('registrar.html',form=form)
