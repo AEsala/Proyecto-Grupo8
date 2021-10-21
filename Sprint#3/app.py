@@ -16,8 +16,7 @@ def index():
 # Login del Administrador
 @app.route('/LoginAdministrativo',methods=['GET','POST']) 
 def loginA(): 
-    form = login() 
-
+    form = login()
     if form.validate_on_submit():
 	    return render_template('base.html')
 
