@@ -83,6 +83,8 @@ def nuevo_usuario():
         email = request.form['email']
         clave = request.form['clave']
 
+        sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
+
         return "ok"
 
     return render_template('registrar.html',form=form)
@@ -114,19 +116,19 @@ def mostrarRes():
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
 
 
-#Funciones para conectarse con la base de datos para
-def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,):
+#Funciones para conectarse con la base de datos 
+def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave):
     try:
-        sql = "INSERT INTO Producto (id,nombre,precio,existencia) VALUES ('{}','{}','{}','{}')".format(id, nombre, precio, existencia)
+        sql = "INSERT INTO Producto (primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave) VALUES ('{}','{}','{}','{}')".format(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
         print(sql)
         conn = get_db()       
         cursorObj = conn.cursor()        
         cursorObj.execute(sql)
-    
-        print("Aquí.")
+        print("Usuario Registrado en la base de datos")
         conn.commit() 
         conn.close()
     except Error:
         print(Error)
+
 if __name__=="__main__":
     app.run(debug = True, port = 5000)    
