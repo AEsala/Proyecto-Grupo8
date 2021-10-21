@@ -1,5 +1,5 @@
 from types import MethodDescriptorType
-from flask import Flask ,app,render_template,request
+from flask import Flask ,app,render_template,request,flash
 from funcion import registro,login
 import os
 
@@ -82,10 +82,8 @@ def nuevo_usuario():
         direccion = request.form['direccion']
         email = request.form['email']
         clave = request.form['clave']
-
         sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
-
-        return "ok"
+        flash("Registro Exitoso")
 
     return render_template('registrar.html',form=form)
 

@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {% block contenido %}
+
+{% with mensajes=get_flashed_messages() %}
+{% if mensajes %}
+{% for mensaje in mensajes%}
+    <p>{{mensaje}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
     <head>
         <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleRegistro.css')  }}">
     </head>
     <h4>Registrar</h4>
-    <form action="" methods="POST" name="formregistro">
+    <form action="DashBoard-Administrativo/registrar" methods="POST" name="formregistro">
         <!-- estas son las referencias para el fomulario.py -->
         <div id='main'>
             <div class='container'>
