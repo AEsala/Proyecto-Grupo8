@@ -3,6 +3,10 @@ from flask import Flask ,app,render_template,request
 from funcion import registro,login
 import os
 
+from sqlite3 import Error
+from db import get_db
+
+
 app = Flask(__name__) 
 app.secret_key = os.urandom(24)
 
@@ -65,14 +69,23 @@ def registrar():
     form=registro()
     return render_template('registrar.html',form=form)
 
-# @app.route('/DashBoard-Administrativo/registrar',methods=['POST'])
-# def nuevo_usuario():
-#     form=registro()
-#     if request.method == 'POST':
-#         var 
-#         return 
-    
-#     return render_template('registrar.html',form=form)
+
+@app.route('/DashBoard-Administrativo/registrar',methods=['POST'])
+def nuevo_usuario():
+    form=registro(request.form)
+    if request.method == 'POST':
+        primerNombre = request.form['primer_nombre']
+        segundoNombre = request.form['segundo_nombre']
+        primerApellido = request.form['primer_apellido']
+        segundoApellido = request.form['segundo_apellido']
+        codUsuario = request.form['cedula']
+        direccion = request.form['direccion']
+        email = request.form['email']
+        clave = request.form['clave']
+
+        return "ok"
+
+    return render_template('registrar.html',form=form)
 
 @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
 def buscador():
@@ -100,5 +113,20 @@ def mostrarRes():
 
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
 
+
+#Funciones para conectarse con la base de datos para
+def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,):
+    try:
+        sql = "INSERT INTO Producto (id,nombre,precio,existencia) VALUES ('{}','{}','{}','{}')".format(id, nombre, precio, existencia)
+        print(sql)
+        conn = get_db()       
+        cursorObj = conn.cursor()        
+        cursorObj.execute(sql)
+    
+        print("Aquí.")
+        conn.commit() 
+        conn.close()
+    except Error:
+        print(Error)
 if __name__=="__main__":
     app.run(debug = True, port = 5000)    
