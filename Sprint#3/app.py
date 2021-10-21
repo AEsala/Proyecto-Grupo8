@@ -1,5 +1,5 @@
 from types import MethodDescriptorType
-from flask import Flask ,app,render_template
+from flask import Flask ,app,render_template,request
 from funcion import registro,login
 import os
 
@@ -42,9 +42,10 @@ def loginD():
 def dashboard(): 
     return render_template('base.html')
 
-@app.route('/DashBoard-Administrativo/overview',methods=['GET','POST'])
+@app.route('/DashBoard-Administrativo/overview',methods=['GET'])
 def overview():
     return render_template('overview.html')
+
 
 @app.route('/DashBoard-Administrativo/estudiantes',methods=['GET','POST'])
 def estudiantes():
@@ -63,6 +64,15 @@ def cursos():
 def registrar():
     form=registro()
     return render_template('registrar.html',form=form)
+
+# @app.route('/DashBoard-Administrativo/registrar',methods=['POST'])
+# def nuevo_usuario():
+#     form=registro()
+#     if request.method == 'POST':
+#         var 
+#         return 
+    
+#     return render_template('registrar.html',form=form)
 
 @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
 def buscador():

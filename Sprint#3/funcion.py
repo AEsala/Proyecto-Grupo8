@@ -5,18 +5,24 @@ from wtforms.validators import DataRequired, length,InputRequired
 
 
 class registro(FlaskForm):
-    nombre = StringField('Nombres:', validators = [DataRequired(message='No dejar vacío, completar')])
+    primer_nombre = StringField('Primer Nombre:', validators = [DataRequired(message='No dejar vacío, completar')])
     
-    apellido = StringField('Apellidos:', validators = [DataRequired(message='No dejar vacío, completar')])
+    segundo_nombre = StringField('Segundo Nombre:' )
 
+    primer_apellido = StringField('Primer Apellido:', validators = [DataRequired(message='No dejar vacío, completar')])
+    
+    segundo_apellido = StringField('Segundo Apellido:' )
+    
     cedula = StringField('Cedula:',  validators = [DataRequired(message='No dejar vacio,completar')])
 
     direccion = StringField('Direccion:',  validators = [DataRequired(message='No dejar vacío, completar')])
 
     email = EmailField('Correo:', validators = [DataRequired(message='No dejar vacío, completar')])
 
-    celular = StringField('Celular:', validators = [DataRequired(message='No dejar vacío, completar')])
+    clave = StringField('Clave:',  validators = [DataRequired(message='No dejar vacío, completar')])
 
+   
+  
     enviar = SubmitField('Registrar')
 
 
