@@ -11,12 +11,21 @@
                 <div id='divisionA'>
                     <p>
                         <!-- este form es el que esta definido en app.py -->
-                        {{ form.nombre.label }}<br />
-                        {{ form.nombre(size=30)}}<br />
+                        {{ form.primer_nombre.label }}<br />
+                        {{ form.primer_nombre(size=30)}}<br />
                     </p>
                     <p>
-                        {{ form.apellido.label }}<br />
-                        {{ form.apellido(size=30)}}<br />
+                        <!-- este form es el que esta definido en app.py -->
+                        {{ form.segundo_nombre.label }}<br />
+                        {{ form.segundo_nombre(size=30)}}<br />
+                    </p>
+                    <p>
+                        {{ form.primer_apellido.label }}<br />
+                        {{ form.primer_apellido(size=30)}}<br />
+                    </p>
+                    <p>
+                        {{ form.segundo_apellido.label }}<br />
+                        {{ form.segundo_apellido(size=30)}}<br />
                     </p>
                     <p>
                         {{ form.cedula.label }}<br />
@@ -33,14 +42,17 @@
                         {{ form.email(size=30)}}<br />
                     </p>
                     <p>
-                        {{ form.celular.label }}<br />
-                        {{ form.celular(size=30)}}<br />
+                        {{ form.clave.label }}<br />
+                        {{ form.clave(size=30)}}<br />
                     </p>
                 </div>
                 <p>
                     <label for="sex"> Sexo : <br>
                         <input type="radio" id="sex" name="sex" value="h"> Hombre <br>
-                        <input type="radio" id="sex" name="sex" value="m" /> Mujer
+                        <input type="radio" id="sex" name="sex" value="m" /> Mujer <br>
+                        <input type="radio" id="sex" name="sex" value="" /> Otro
+
+                    
                 </p>
                 <p>
                     Tipo de usuario :

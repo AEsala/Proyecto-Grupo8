@@ -3,20 +3,23 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, length,InputRequired
 
-
 class registro(FlaskForm):
-    nombre = StringField('Nombres:', validators = [DataRequired(message='No dejar vacío, completar')])
+    primerNombre = StringField('Primer Nombre:', validators = [DataRequired(message='No dejar vacío, completar')])
     
-    apellido = StringField('Apellidos:', validators = [DataRequired(message='No dejar vacío, completar')])
+    segundoNombre = StringField('Segundo Nombre:' )
 
-    cedula = StringField('Cedula:',  validators = [DataRequired(message='No dejar vacio,completar')])
+    primerApellido = StringField('Primer Apellido:', validators = [DataRequired(message='No dejar vacío, completar')])
+    
+    segundoApellido = StringField('Segundo Apellido:' )
+    
+    codUsuario = StringField('Cedula:',  validators = [DataRequired(message='No dejar vacio,completar')])
 
     direccion = StringField('Direccion:',  validators = [DataRequired(message='No dejar vacío, completar')])
 
     email = EmailField('Correo:', validators = [DataRequired(message='No dejar vacío, completar')])
 
-    celular = StringField('Celular:', validators = [DataRequired(message='No dejar vacío, completar')])
-
+    clave = StringField('Clave:',  validators = [DataRequired(message='No dejar vacío, completar')])
+  
     enviar = SubmitField('Registrar')
 
 
