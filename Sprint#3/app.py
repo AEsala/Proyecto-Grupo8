@@ -4,31 +4,40 @@ from funcion import registro,login
 import os
 
 app = Flask(__name__) 
-app.secret_key=os.urandom(24)
+app.secret_key = os.urandom(24)
 
 # Rutas Mockup 1 inicio-2login-3 dashboard
 @app.route('/',methods=['GET','POST']) 
 def index(): 
     return render_template('inicio.html')
 
+
+""" Logins """
+# Login del Administrador
 @app.route('/LoginAdministrativo',methods=['GET','POST']) 
 def loginA(): 
-    form=login()  
+    form = login() 
+
     if form.validate_on_submit():
+	    return render_template('base.html')
 
-		    return render_template('base.html')
-    return render_template('loginAdm.html', form=form)
+    return render_template('loginAdm.html', form = form)
 
+# Login de Estudiantes
 @app.route('/LoginEstudiantes',methods=['GET','POST']) 
 def loginE(): 
-    form=login()
+    form = login()
     return render_template('loginEst.html',form=form)
 
+# Login de Docentes
 @app.route('/LoginDocentes',methods=['GET','POST']) 
 def loginD(): 
-    form=login()
+    form = login()
     return render_template('loginDoc.html',form=form)
 
+
+""" DashBoards """
+# Dashboard - Administrador
 @app.route('/DashBoard-Administrativo',methods=['GET','POST']) 
 def dashboard(): 
     return render_template('base.html')
@@ -82,7 +91,4 @@ def mostrarRes():
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
 
 if __name__=="__main__":
-    print("Entro al main")
-    app.run(debug=True,port=5000)    
-
-
+    app.run(debug = True, port = 5000)    
