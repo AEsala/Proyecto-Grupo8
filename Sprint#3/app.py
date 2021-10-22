@@ -81,7 +81,6 @@ def nuevo_usuario():
         flash("Registro Exitoso")
         return redirect('registrar')
         
-
     return render_template('registrar.html',form=form)
 
 @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
