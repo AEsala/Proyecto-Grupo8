@@ -1,8 +1,13 @@
 from types import MethodDescriptorType
-from flask import Flask ,app,render_template,request
+from flask import Flask ,app, json,render_template, request, jsonify
+from wtforms.validators import Length
 from funcion import registro,login
 import os
 
+""" Controladores """
+from validarForms import iniciarSesion
+
+import hashlib
 from sqlite3 import Error
 from db import get_db
 
@@ -13,7 +18,7 @@ app.secret_key = os.urandom(24)
 # Rutas Mockup 1 inicio-2login-3 dashboard
 @app.route('/',methods=['GET','POST']) 
 def index(): 
-    return render_template('inicio.html')
+    return render_template("inicio.html")
 
 
 """ Logins """
@@ -37,6 +42,25 @@ def loginE():
 def loginD(): 
     form = login()
     return render_template('loginDoc.html',form=form)
+
+
+
+
+
+# Validación de Inicio de Sesión
+@app.route("/valogin", methods=["POST"])
+def validarLogin():
+    user = request.form["user"]
+    pss = request.form["pass"]
+
+    if (len(user) >= 8) and (len(pss) >= 8):
+        passwordHash = hashlib.new("sha256", pss)
+        return(jsonify(passwordHash))
+    else:
+        return(jsonify("No se pudo iniciar sesión"))
+
+
+
 
 
 """ DashBoards """
