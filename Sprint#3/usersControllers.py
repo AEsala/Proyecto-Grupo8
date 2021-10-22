@@ -49,3 +49,16 @@ def getUser(cc):
     user = cursor.fetchone()
 
     return user
+
+
+#Metodo para buscar actividad
+
+def getActivity(cc):
+    connect = get_db()
+    cursor = connect.cursor()
+
+    sql = "SELECT * FROM Usuarios WHERE codUsuario = {}".format(cc)
+    cursor.execute(sql)
+    user = cursor.fetchone()
+
+    return user
