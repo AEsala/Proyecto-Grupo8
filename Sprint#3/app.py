@@ -1,5 +1,5 @@
 from types import MethodDescriptorType
-from flask import Flask ,app,render_template,request,flash,redirect,url_for
+from flask import Flask ,app,render_template,request,flash,redirect,url_for,jsonify
 from funcion import registro,login
 import os
 
@@ -85,7 +85,14 @@ def nuevo_usuario():
 
 @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
 def buscador():
-    return render_template('buscar-Pro-Est.html')
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = " SELECT primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,email FROM Usuarios "
+    cursor.execute(sql)
+    users = cursor.fetchall()
+
+    return jsonify(users)
+
 
 #Mockups docente
 

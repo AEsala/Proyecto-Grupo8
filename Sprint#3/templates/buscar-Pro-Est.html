@@ -48,17 +48,8 @@
 
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            
-            <td value={{primerNombre}}></td>
-            <td>Daniels</td>
-            <td>valdes</td>
-            <td>lopez</td>
-            <td>1029312</td>
-            <td>Email</td>
-
-          </tr>
+        <tbody id="tbody">
+    
          
         </tbody>
       </table>
@@ -75,8 +66,29 @@
   </div>
 </div>
   
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 </body>
+
+<script>
+  $(function(){
+    tabla();
+  });
+function tabla() {
+  $.ajax({
+    url:'./baseDeDatos.db',
+    type="POST",
+    success: function(){
+      var js=JSON.parse(response.responseText);
+      var tabla;
+      for (var i = 0; i < js.length; i++) {
+        tabla+='<tr><td>' +js[i].primerNombre +' </tr></td>' ;
+      }
+      $('#tbody').html(tabla)
+    }
+
+  })
+}
+</script>
 </html>
 
 {% endblock %}
