@@ -2,13 +2,13 @@ from types import MethodDescriptorType
 from flask import Flask ,app,render_template,request,flash,redirect,url_for,jsonify
 from funcion import registro,login
 import os
+from usersControllers import sql_insert_users
 
 """ Controladores """
 from validarForms import iniciarSesion
 
 from werkzeug.security import check_password_hash, generate_password_hash
-from sqlite3 import Error
-from db import get_db
+
 
 
 app = Flask(__name__) 
@@ -52,25 +52,7 @@ def validarLogin():
     user = request.form["user"]
     pss = request.form["pass"]
 
-    if (len(user) >= 5) and (len(pss) >= 8):
-        cursor = get_db().cursor()
-
-        cursor.execute("SELECT * FROM Usuarios WHERE primerNombre = ?", [user])
-        resultado = cursor.fetchone()
-
-        validate = check_password_hash(resultado[7], pss)
-
-        if validate == True:
-            return(jsonify({
-                "datos": resultado,
-                "Inicio": "Correcto"})
-            )
-        else:
-            return(jsonify({
-                "Inicio": "Error"})
-            ) 
-    else:
-        return(jsonify("No se pudo iniciar sesión"))
+    return iniciarSesion(user, pss)
 
 
 
@@ -103,7 +85,7 @@ def cursos():
 
 @app.route('/DashBoard-Administrativo/registrar',methods=['GET','POST'])
 def nuevo_usuario():
-    form=registro(request.form)
+    form = registro(request.form)
     if request.method == 'POST':
         primerNombre = request.form['primerNombre']
         segundoNombre = request.form['segundoNombre']
@@ -113,20 +95,22 @@ def nuevo_usuario():
         direccion = request.form['direccion']
         email = request.form['email']
         clave = request.form['clave']
-        sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
+        typeUser = request.form["entradalista1"]
+        
+        sql_insert_users(primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email, clave, typeUser)
         flash("Registro Exitoso")
         return redirect('registrar')
         
     return render_template('registrar.html',form=form)
 
-@app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
+""" @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
 def buscador():
     connect = get_db()
     cursor = connect.cursor()
     sql = " SELECT primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,email FROM Usuarios "
     cursor.execute(sql)
     users = cursor.fetchall()
-    return jsonify(users)
+    return jsonify(users) """
 
 
 #Mockups docente
@@ -153,7 +137,7 @@ def mostrarRes():
 
 
 #Funciones para conectarse con la base de datos 
-def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave):
+""" def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave):
     try:
         sql = "INSERT INTO Producto (primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave) VALUES ('{}','{}','{}','{}')".format(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
         print(sql)
@@ -164,7 +148,10 @@ def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,c
         conn.commit() 
         conn.close()
     except Error:
-        print(Error)
+        print(Error) """
+
+
 
 if __name__=="__main__":
-    app.run(debug = True, port = 5000)    
+    app.run(host = '127.0.0.1', port = 443, ssl_context = ('micertificado.pem', 'llaveprivada.pem'))
+ 
