@@ -4,7 +4,7 @@ from flask import g
 
 def get_db():
     try:
-        g.db = sqlite3.connect("database.db")
+        g.db = sqlite3.connect("baseDeDatos.db")
         return g.db
     except Error:
         print(Error)
