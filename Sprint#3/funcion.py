@@ -18,7 +18,7 @@ class registro(FlaskForm):
 
     email = EmailField('Correo:', validators = [DataRequired(message='No dejar vacío, completar')])
 
-    clave = StringField('Clave:',  validators = [DataRequired(message='No dejar vacío, completar')])
+    clave = PasswordField('Clave:',  validators = [DataRequired(message='No dejar vacío, completar')])
   
     enviar = SubmitField('Registrar')
 
