@@ -13,13 +13,14 @@ def iniciarSesion(user, pss):
         validate = check_password_hash(resultado[7], pss)
 
         if validate == True:
-            return(jsonify({
+
+            return({
                 "datos": resultado,
                 "Inicio": "Correcto"
-            }))
+            })
         else:
-            return(jsonify({
+            return({
                 "Inicio": "Error"
-            })) 
+            }) 
     else:
-        return(jsonify("No se pudo iniciar sesión"))
+        return("No se pudo iniciar sesión")
