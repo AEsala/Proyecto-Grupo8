@@ -65,29 +65,9 @@
     </form>
   </div>
 </div>
-  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+      
 </body>
 
-<script>
-  $(function(){
-    tabla();
-  });
-function tabla() {
-  $.ajax({
-    url:'./baseDeDatos.db',
-    type="POST",
-    success: function(){
-      var js=JSON.parse(response.responseText);
-      var tabla;
-      for (var i = 0; i < js.length; i++) {
-        tabla+='<tr><td>' +js[i].primerNombre +' </tr></td>' ;
-      }
-      $('#tbody').html(tabla)
-    }
-
-  })
-}
 </script>
 </html>
 

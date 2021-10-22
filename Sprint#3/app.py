@@ -90,7 +90,6 @@ def buscador():
     sql = " SELECT primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,email FROM Usuarios "
     cursor.execute(sql)
     users = cursor.fetchall()
-
     return jsonify(users)
 
 
