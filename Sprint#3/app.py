@@ -1,6 +1,4 @@
 from types import MethodDescriptorType
-from flask import Flask ,app, json,render_template, request, jsonify
-from wtforms.validators import Length
 from flask import Flask ,app,render_template,request,flash,redirect,url_for,jsonify
 from funcion import registro,login
 import os
@@ -8,7 +6,7 @@ import os
 """ Controladores """
 from validarForms import iniciarSesion
 
-import hashlib
+from werkzeug.security import check_password_hash, generate_password_hash
 from sqlite3 import Error
 from db import get_db
 
@@ -54,9 +52,23 @@ def validarLogin():
     user = request.form["user"]
     pss = request.form["pass"]
 
-    if (len(user) >= 8) and (len(pss) >= 8):
-        passwordHash = hashlib.new("sha256", pss)
-        return(jsonify(passwordHash))
+    if (len(user) >= 5) and (len(pss) >= 8):
+        cursor = get_db().cursor()
+
+        cursor.execute("SELECT * FROM Usuarios WHERE primerNombre = ?", [user])
+        resultado = cursor.fetchone()
+
+        validate = check_password_hash(resultado[7], pss)
+
+        if validate == True:
+            return(jsonify({
+                "datos": resultado,
+                "Inicio": "Correcto"})
+            )
+        else:
+            return(jsonify({
+                "Inicio": "Error"})
+            ) 
     else:
         return(jsonify("No se pudo iniciar sesión"))
 
