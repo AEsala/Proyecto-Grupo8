@@ -139,7 +139,7 @@ def mostrarRes():
 #Funciones para conectarse con la base de datos 
 """ def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave):
     try:
-        sql = "INSERT INTO Producto (primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave) VALUES ('{}','{}','{}','{}')".format(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
+        sql = "INSERT INTO Producto (primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave) VALUES ('{}','{}','{}','{}','{}','{}','{}','{}')".format(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
         print(sql)
         conn = get_db()       
         cursorObj = conn.cursor()        
