@@ -13,24 +13,18 @@
   <h4>Buscador</h4>
   <div class="containerBuscador">
   
-    <div id="ctn-barra-busqueda">
-      <input type="text" name="" id="entradaBusqueda" placeholder="Digita la cedula">
-    </div>
+    
 
-    <div id="ctn-icono-busqueda">
-      <i class="fas fa-search" id="icono-busqueda"></i>
-    </div>
-
-    <form action="" method="post">
-      <div class="radio">
-        <p>
-          Tipo de usuario :<br>
-          <input type="radio" name="usuario" value="profesor"> Profesor
-          <input type="radio" name="usuario" value="estudiantes"> Estudiante<br>
-        </p>
+    <form name="getuser" id="getUser" action="" method="post">
+      <div id="ctn-barra-busqueda">
+        <input type="text" name="cc" id="entradaBusqueda" placeholder="Digita la cedula">
       </div>
   
-      <p id="botonbuscar"><input type="submit" value="Buscar"></p>
+      <div id="ctn-icono-busqueda">
+        <i class="fas fa-search" id="icono-busqueda"></i>
+      </div>
+  
+      <input type="submit" value="Buscar">
     </form>
   
   <div class="containerBuscador2">
@@ -45,30 +39,17 @@
             <th scope="col">Segundo Apellido</th>
             <th scope="col">cedula</th>
             <th scope="col">email</th>
-
           </tr>
         </thead>
         <tbody id="tbody">
     
-         
         </tbody>
       </table>
-    </div>
-      <div id="edicion">    
-      <p><input type="submit" value="Editar"></p>
-      <p><input type="submit" value="Eliminar"></p>
-      <p><input type="submit" value="Guardar"></p>
-    </div>
-
-  
-  
     </form>
   </div>
 </div>
-      
+      <script src="../static/js/forms.js"></script>
 </body>
-
-</script>
 </html>
 
 {% endblock %}
