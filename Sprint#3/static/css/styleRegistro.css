@@ -1,3 +1,4 @@
+
 h4{
     color:#053742;
 }
@@ -10,7 +11,17 @@ h4{
     border-radius:10px;
     margin:auto;
     display: block ;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 
+}
+.mensajes{
+    padding: 10px;
+    width: 750px;
+    color: #E8F0F2;
+    background-color: #5c99a7;
+    margin: auto;
+    font-weight: bold;
+    text-align: center;
 }
 .container{
     column-count: 2;

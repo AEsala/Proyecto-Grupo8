@@ -1,5 +1,5 @@
 from types import MethodDescriptorType
-from flask import Flask ,app,render_template,request,flash
+from flask import Flask ,app,render_template,request,flash,redirect,url_for
 from funcion import registro,login
 import os
 
@@ -64,26 +64,30 @@ def docentes():
 def cursos():
     return render_template('cursos.html')
 
-@app.route('/DashBoard-Administrativo/registrar')
-def registrar():
-    form=registro()
-    return render_template('registrar.html',form=form)
+# @app.route('/DashBoard-Administrativo/registrar')
+# def registrar():
+#     form=registro()
+#     return render_template('registrar.html',form=form)
 
 
-@app.route('/DashBoard-Administrativo/registrar',methods=['POST'])
+@app.route('/DashBoard-Administrativo/registrar',methods=['GET','POST'])
 def nuevo_usuario():
     form=registro(request.form)
     if request.method == 'POST':
-        primerNombre = request.form['primer_nombre']
-        segundoNombre = request.form['segundo_nombre']
-        primerApellido = request.form['primer_apellido']
-        segundoApellido = request.form['segundo_apellido']
-        codUsuario = request.form['cedula']
+        primerNombre = request.form['primerNombre']
+        segundoNombre = request.form['segundoNombre']
+        primerApellido = request.form['primerApellido']
+        segundoApellido = request.form['segundoApellido']
+        codUsuario = request.form['codUsuario']
         direccion = request.form['direccion']
         email = request.form['email']
         clave = request.form['clave']
+        
+      
         sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
         flash("Registro Exitoso")
+        return redirect('registrar')
+        
 
     return render_template('registrar.html',form=form)
 
