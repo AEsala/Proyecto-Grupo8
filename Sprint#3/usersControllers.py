@@ -16,3 +16,36 @@ def sql_insert_users(primerNombre, segundoNombre, primerApellido, segundoApellid
 
     conn.commit()
     conn.close()
+
+
+
+# Método para Obtener todos los Usuarios
+def getUsers():
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = " SELECT idUsuario, primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email FROM Usuarios "
+    cursor.execute(sql)
+    users = cursor.fetchall()
+
+    return users
+
+def cantUsers():
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = " SELECT COUNT(*) FROM Usuarios WHERE idTipoUsuario = 1; "
+    cursor.execute(sql)
+    users = cursor.fetchone()
+
+    return users
+
+
+
+def getUser(cc):
+    connect = get_db()
+    cursor = connect.cursor()
+
+    sql = "SELECT * FROM Usuarios WHERE codUsuario = {}".format(cc)
+    cursor.execute(sql)
+    user = cursor.fetchone()
+
+    return user
