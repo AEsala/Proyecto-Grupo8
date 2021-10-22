@@ -1,18 +1,21 @@
 from types import MethodDescriptorType
-from flask import Flask ,app,render_template,request,flash,redirect,url_for,jsonify
+from flask import Flask, app, json, render_template, request, flash, redirect, url_for, jsonify, session
+from flask_session import Session
 from funcion import registro,login
 import os
-from usersControllers import sql_insert_users
+
 
 """ Controladores """
 from validarForms import iniciarSesion
-
-from werkzeug.security import check_password_hash, generate_password_hash
+from usersControllers import cantUsers, sql_insert_users, getUsers, getUser
 
 
 
 app = Flask(__name__) 
 app.secret_key = os.urandom(24)
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 # Rutas Mockup 1 inicio-2login-3 dashboard
 @app.route('/',methods=['GET','POST']) 
@@ -52,7 +55,11 @@ def validarLogin():
     user = request.form["user"]
     pss = request.form["pass"]
 
-    return iniciarSesion(user, pss)
+    sesion = iniciarSesion(user, pss)
+    if (sesion['Inicio'] == "Correcto"):
+        session['nombre'] = sesion['datos'][2]
+    
+    return(jsonify(sesion))
 
 
 
@@ -71,7 +78,15 @@ def overview():
 
 @app.route('/DashBoard-Administrativo/estudiantes',methods=['GET','POST'])
 def estudiantes():
-    return render_template('estudiantes.html')
+    cantEst = cantUsers()
+    users = getUsers()
+    data = {
+        "cant": cantEst,
+        "users": users
+    }
+    return render_template('estudiantes.html', students = data)
+
+
 
 @app.route('/DashBoard-Administrativo/docentes',methods=['GET','POST'])
 def docentes():
@@ -103,14 +118,14 @@ def nuevo_usuario():
         
     return render_template('registrar.html',form=form)
 
-""" @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
+@app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
 def buscador():
-    connect = get_db()
-    cursor = connect.cursor()
-    sql = " SELECT primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,email FROM Usuarios "
-    cursor.execute(sql)
-    users = cursor.fetchall()
-    return jsonify(users) """
+    if request.method == "POST":
+        cc = request.form["cc"]
+        user = getUser(cc)
+        return(jsonify(user))
+
+    return render_template("buscar-Pro-Est.html")
 
 
 #Mockups docente
@@ -134,21 +149,6 @@ def mostrarRes():
     return render_template("resultadosBusqueda.html")
 
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
-
-
-#Funciones para conectarse con la base de datos 
-""" def sql_insert_users(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave):
-    try:
-        sql = "INSERT INTO Producto (primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave) VALUES ('{}','{}','{}','{}','{}','{}','{}','{}')".format(primerNombre,segundoNombre,primerApellido,segundoApellido,codUsuario,direccion,email,clave)
-        print(sql)
-        conn = get_db()       
-        cursorObj = conn.cursor()        
-        cursorObj.execute(sql)
-        print("Usuario Registrado en la base de datos")
-        conn.commit() 
-        conn.close()
-    except Error:
-        print(Error) """
 
 
 
