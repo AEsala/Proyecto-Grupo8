@@ -10,8 +10,7 @@
 </header>
     <div id='contador'>
     <p>
-        <b>    Cantidad de estudiantes </b><br>
-        aqui va el enlace al numero de cursos en la base de datos
+        <b>Cantidad de Estudiantes: {{ students["cant"] }}</b><br>
     </p>
     </div>
     <table class="table table-bordered">
@@ -19,33 +18,21 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Nombres</th>
-            <th scope="col">Apeliidos</th>
-            <th scope="col">Cedula</th>
-            <th scope="col">Nota</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Correo Electrónico</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>1029312</td>
-            <td>4.2</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>1209121</td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>Bird</td>
-            <td>10932012</td>
-            <td>3.8</td>
-          </tr>
+          {% for usuario in students.users %}
+            <tr>
+              <th scope="row">{{ usuario[0] }}</th>
+              <td>{{ usuario[1] }} {{ usuario[2] }}</td>
+              <td>{{ usuario[3] }} {{ usuario[4] }}</td>
+              <td>{{ usuario[5] }}</td>
+              <td>{{ usuario[6] }}</td>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
 
