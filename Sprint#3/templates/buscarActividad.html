@@ -12,17 +12,17 @@
     <div class="component">
         <h1><img src="/static/images/lupa.png" alt="Imagen busqueda" width="40" >Buscar actividad</h1>
         <div class="info">
-            <form action="DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad"  method="get" autocomplete="on">
-                <label>Curso:</label>  <input type="text"><br><br>
-                <label>Cod. asignatura:</label> <input type="text"><br><br>
-                <label>Cod. actividad:</label><input type="text"><br><br>
-                <label>Cod. estudiante:</label><input type="text"><br><br>
+            <form name="getactivity" id="getActivity" action="/DashBoard-Administrativo/docentes/buscarActividad"  method="post" autocomplete="on">
+                <label>Curso:</label>  <input type="text" name="curso"><br><br>
+                <label>Cod. asignatura:</label> <input type="text" name="codAsignatura"><br><br>
+                <label>Cod. actividad:</label><input type="text" name="codActividad"><br><br>
+                <label>Cod. estudiante:</label><input type="text"name="codUsuario"><br><br>
                 <hr>
-                <input class="button"  type="submit" formaction="/docente" value="Cancelar"> 
+                <!-- <input class="button"  type="submit" formaction="/docente" value="Cancelar">  -->
                 <input class="button" type="submit" value="Buscar">
             </form>
         </div>
     </div>
-    
+    <script src="../static/js/forms.js"></script>
 </body>
 </html>

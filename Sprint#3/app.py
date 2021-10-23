@@ -7,7 +7,7 @@ import os
 
 """ Controladores """
 from validarForms import iniciarSesion
-from usersControllers import cantUsers, sql_insert_users, getUsers, getUser
+from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity
 
 
 
@@ -134,6 +134,11 @@ def buscador():
 
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad',methods=['GET', 'POST'])
 def buscarActiRetro():
+    if request.method == "POST":
+        codUsuario = request.form["codUsuario"]
+        details = getActivity(codUsuario)
+        print("llego aqui")
+        return(jsonify(details))
     return render_template("buscarActividad.html")
 
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad',methods=['GET','POST'])

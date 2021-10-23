@@ -43,9 +43,19 @@ def cantUsers():
 def getUser(cc):
     connect = get_db()
     cursor = connect.cursor()
-
     sql = "SELECT * FROM Usuarios WHERE codUsuario = {}".format(cc)
     cursor.execute(sql)
     user = cursor.fetchone()
 
     return user
+
+
+#Metodo para buscar actividad
+
+def getActivity(curso):
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = "SELECT * FROM Detalle_Notas WHERE codUsuario = {}".format(curso)
+    cursor.execute(sql)
+    details = cursor.fetchone()
+    return details
