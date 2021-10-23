@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     'use strict';
 
+    console.log(window.location.href);
+
     /* let formLogin = document.querySelector("form");
     formLogin.addEventListener("submit", function(e) {
         e.preventDefault();
@@ -64,50 +66,43 @@ document.addEventListener("DOMContentLoaded", function() {
               let tbody = document.querySelector("#tbody");
               tbody.innerHTML = datos;
             });
-    })
+    });
 
+    /* Buscar actividad */
+    let formGetActivity = document.querySelector("#getActivity");
+    formGetActivity.addEventListener("submit", function(e) {
+        e.preventDefault();
+        let cedula = document.getactivity.codUsuario.value;
+        let data = new FormData();
+        data.append("codUsuario", cedula);
+
+        fetch("/DashBoard-Administrativo/docentes/buscarActividad", {
+            method: "POST",
+            body: data
+        }).then(res1 => res1.json())
+          .then(res1 => {
+              console.log(res1);
+           //    let datos = `
+           //    <tr>
+           //             <td><hr>${res1[2]}</td>
+                       
+                 
+           //             <td><hr>${res1[7]}</td>
+                       
+              
+           //             <td><hr>${res1[3]}</td>
+                       
+                 
+           //             <td><hr>${res1[8]}</td>
+                  
+           //             <td><hr>${res1[4]}</td>
+                       
+           //         </tr> `;
+
+           //  let tbody = document.querySelector("#tbody-retroalimentarActividad");
+           //  tbody.innerHTML = datos;
+
+ 
+            });
+    });
 });
-
-document.addEventListener("DOMContentLoaded",function(){
-'use strict';
-
-     /* Buscar actividad */
-     let formGetActivity = document.querySelector("#getActivity");
-     formGetActivity.addEventListener("submit", function(e) {
-         e.preventDefault();
-         let cedula = document.getactivity.codUsuario.value;
-         let data = new FormData();
-         data.append("codUsuario", cedula);
- 
-         fetch("/DashBoard-Administrativo/docentes/buscarActividad", {
-             method: "POST",
-             body: data
-         }).then(res1 => res1.json())
-           .then(res1 => {
-               console.log(res1);
-            //    let datos = `
-            //    <tr>
-            //             <td><hr>${res1[2]}</td>
-                        
-                  
-            //             <td><hr>${res1[7]}</td>
-                        
-               
-            //             <td><hr>${res1[3]}</td>
-                        
-                  
-            //             <td><hr>${res1[8]}</td>
-                   
-            //             <td><hr>${res1[4]}</td>
-                        
-            //         </tr> `;
-
-            //  let tbody = document.querySelector("#tbody-retroalimentarActividad");
-            //  tbody.innerHTML = datos;
- 
-  
-             });
-     })
-
-
-})
