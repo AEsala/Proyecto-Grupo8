@@ -135,10 +135,23 @@ def buscador():
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad',methods=['GET', 'POST'])
 def buscarActiRetro():
     if request.method == "POST":
-        codUsuario = request.form["codUsuario"]
-        details = getActivity(codUsuario)
-        print("llego aqui")
-        return(jsonify(details))
+        if request.form['submit_button']== 'Buscar':
+            print("boton buscar")
+            codUsuario = request.form["codUsuario"]
+            details = getActivity(codUsuario)
+            print(details)
+            print("llego aqui")
+            for i in range(len(details)):
+                c_act=details[2]
+                a=details[6]
+                c=details[2]
+                c_est=details[7]
+                n=details[3]
+           
+            return render_template("retroActividad.html",c=c,a=a,c_act=c_act,c_est=c_est,n=n)
+        elif request.form['submit_button']=='Cancelar':
+            print("boton cancelar")
+            return "aqui va el dashboard del docente"
     return render_template("buscarActividad.html")
 
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad',methods=['GET','POST'])

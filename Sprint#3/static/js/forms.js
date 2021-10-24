@@ -68,21 +68,21 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 
-    /* Buscar actividad */
-    let formGetActivity = document.querySelector("#getActivity");
-    formGetActivity.addEventListener("submit", function(e) {
-        e.preventDefault();
-        let cedula = document.getactivity.codUsuario.value;
-        let data = new FormData();
-        data.append("codUsuario", cedula);
+    // /* Buscar actividad */
+    // let formGetActivity = document.querySelector("#getActivity");
+    // formGetActivity.addEventListener("submit", function(e) {
+    //     e.preventDefault();
+    //     let cedula = document.getactivity.codUsuario.value;
+    //     let data = new FormData();
+    //     data.append("codUsuario", cedula);
 
-        fetch("/DashBoard-Administrativo/docentes/buscarActividad", {
-            method: "POST",
-            body: data
-        }).then(res1 => res1.json())
-          .then(res1 => {
-              console.log(res1);
-           //    let datos = `
+    //     fetch("/DashBoard-Administrativo/docentes/buscarActividad", {
+    //         method: "POST",
+    //         body: data
+    //     }).then(res1 => res1.json())
+    //       .then(res1 => {
+    //           console.log(res1);
+    //        //    let datos = `
            //    <tr>
            //             <td><hr>${res1[2]}</td>
                        
@@ -103,6 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
            //  tbody.innerHTML = datos;
 
  
-            });
-    });
+    //         });
+    // });
 });
