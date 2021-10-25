@@ -1,3 +1,5 @@
+{% extends "baseDocente.html" %}
+{% block contenido %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +10,20 @@
     <link rel="stylesheet" href="/static/css/retroAlimenBusqueda.css">
 </head>
 <body>
+
     <div class="component">
         <h1><img src="/static/images/lupa.png" alt="Lupa de busqueda" width="30">Buscar</h1>
         <div class="info">
             <form class="busca" action="DashBoard-Administrativo/docentes/resultados" method="get" autocomplete="on">
-                <label>Palabras clave</label><input type="text"> <input class="button" type="submit" value="Buscar">
+                <label>Codigo : </label><input type="text">
+                     <input class="button" type="submit" value="Buscar">
                 <br>
                 <br>
-                <input type="radio" id="cursp"><label for="curso">Curso</label><input type="radio"><label>Estudiante</label><input type="radio">
+                    <input type="radio" name="busc" id="cursp">
+                <label for="curso">Curso</label>
+                    <input type="radio" name="busc">
+                <label>Estudiante</label>
+                    <input type="radio" name="busc">
                 <label>Asignatura</label><br>
                 <input class="volver" type="submit" formaction="/DashBoard-Administrativo/docentes" value="Regresar"> 
 
@@ -28,3 +36,4 @@
     
 </body>
 </html>
+{% endblock %}
