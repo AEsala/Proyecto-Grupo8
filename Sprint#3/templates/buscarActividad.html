@@ -1,5 +1,6 @@
 
-<!DOCTYPE html>
+{% extends "baseDocente.html" %}
+{% block contenido %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,11 +10,22 @@
     <link rel="stylesheet" href="/static/css/retroAlimenBusqueda.css">
     <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
 </head>
+
+
 <body>
     <div class="component">
         <h1><img src="/static/images/lupa.png" alt="Imagen busqueda" width="40" >Buscar actividad</h1>
+        <div class="mensajes">
+            {% with mensajes=get_flashed_messages() %}
+            {% if mensajes %}
+            {% for mensaje in mensajes %}
+                <p>{{mensaje}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %} <br>
+            </div>
         <div class="info">
-            <form name="getactivity" id="getActivity"  method="POST" autocomplete="on">
+            <form name="getactivity"  id="getActivity"  method="POST" autocomplete="on">
                 <label>Curso:</label>  <input type="text" name="curso"><br><br>
                 <label>Cod. asignatura:</label> <input type="text" name="codAsignatura"><br><br>
                 <label>Cod. actividad:</label><input type="text" name="codActividad"><br><br>
@@ -27,3 +39,4 @@
     </div>
 </body>
 </html>
+{% endblock %}

@@ -16,7 +16,7 @@
         <img id="image" src="{{  url_for('static',  filename='img/uam.png')  }}" alt="actualice la pagina">
         <h4>Iniciar sesión</h4>
         </div>
-        <form action="/DashBoard-Administrativo" methods="POST" name="formLogin">
+        <form action="/DashBoard-Administrativo" method="POST" name="formLogin">
       
                 {{ form.csrf_token() }} 
                 <p style="font-size:medium ;">
