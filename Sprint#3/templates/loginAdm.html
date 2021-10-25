@@ -7,7 +7,10 @@
     <title>Login Administrador</title>
 
     <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleLogin.css')  }}">
-    <script src="../static/js/forms.js"></script>
+
+    <!-- Script -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{  url_for('static',  filename='js/forms.js')  }}"></script>
 </head>
 <body>
     <h1>ADMINISTRADOR</h1>
@@ -16,7 +19,7 @@
         <img id="image" src="{{  url_for('static',  filename='img/uam.png')  }}" alt="actualice la pagina">
         <h4>Iniciar sesión</h4>
         </div>
-        <form action="/DashBoard-Administrativo" methods="POST" name="formLogin">
+        <form method="post" name="formLogin" id="formRegistro">
       
                 {{ form.csrf_token() }} 
                 <p style="font-size:medium ;">
@@ -38,7 +41,5 @@
             </div>
         </form>
     </div>
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

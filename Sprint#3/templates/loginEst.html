@@ -8,16 +8,21 @@
 
     <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleLogin.css')  }}">
 
+
+    <!-- Scripts -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
 </head>
 <body class="estudiante">
     <h1>Estudiantes</h1>
     <div id='mainEstudiante'>
         <div class="encabezado">
-        <img id="image" src="{{  url_for('static',  filename='img/uam.png')  }}" alt="actualice la pagina">
-        <h5><i>Recuerda usar tu correo institucional</i></h5>
-        <h4>Iniciar sesión</h4>
+            <img id="image" src="{{  url_for('static',  filename='img/uam.png')  }}" alt="actualice la pagina">
+            <h5><i>Recuerda usar tu correo institucional</i></h5>
+            <h4>Iniciar sesión</h4>
         </div>
-        <form action="" methods="POST" name="formregistro">
+        
+        <form method="post" name="formLogin" id="formRegistro">
             <!-- estas son las referencias para el fomulario.py -->
             <p style="font-size:medium ;">
                 <!-- este form es el que esta definido en app.py -->
@@ -39,6 +44,5 @@
             </div>
         </form>
     </div>
-
 </body>
 </html>

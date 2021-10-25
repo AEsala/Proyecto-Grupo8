@@ -1,35 +1,25 @@
-{% extends "base.html" %}
-{% block contenido %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador</title>
-    <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleTabs.css')  }}">
-</head>
-<body>
-  <h4>Buscador</h4>
-  <div class="containerBuscador">
-  
-    
+{% extends "base.html" %} {% block contenido %}
+<h4>Buscador</h4>
+<div class="containerBuscador">
+  <form name="getuser" id="getUser" method="post">
+    <div id="ctn-barra-busqueda">
+      <input
+        type="text"
+        name="cc"
+        id="entradaBusqueda"
+        placeholder="Digita la cedula"
+      />
+    </div>
 
-    <form name="getuser" id="getUser" action="" method="post">
-      <div id="ctn-barra-busqueda">
-        <input type="text" name="cc" id="entradaBusqueda" placeholder="Digita la cedula">
-      </div>
-  
-      <div id="ctn-icono-busqueda">
-        <i class="fas fa-search" id="icono-busqueda" ></i>
-      </div>
-  
-      <input type="submit" value="Buscar">
-    </form>
-  
+    <div id="ctn-icono-busqueda">
+      <i class="fas fa-search" id="icono-busqueda"></i>
+    </div>
+
+    <input type="submit" value="Buscar" />
+  </form>
+
   <div class="containerBuscador2">
-    <form action="/DashBoard-Administrativo/buscador" method="get">
-      <div class="tablaBuscador">
+    <div class="tablaBuscador">
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -41,15 +31,11 @@
             <th scope="col">email</th>
           </tr>
         </thead>
-        <tbody id="tbody">
-    
-        </tbody>
+        <tbody id="tbody"></tbody>
       </table>
-    </form>
+    </div>
   </div>
-</div>
-      <script src="../static/js/forms.js"></script>
-</body>
-</html>
+  <script src="../static/js/forms.js"></script>
 
-{% endblock %}
+  {% endblock %}
+</div>

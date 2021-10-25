@@ -13,7 +13,6 @@ def iniciarSesion(user, pss):
         validate = check_password_hash(resultado[7], pss)
 
         if validate == True:
-
             return({
                 "datos": resultado,
                 "Inicio": "Correcto"
