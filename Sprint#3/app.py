@@ -152,7 +152,7 @@ def buscarActiRetro():
                     n=details[3]
                 flash("Usuario encontrado")   
                   
-                # return redirect (url_for('retroalimentar',c=c,a=a))
+                # return redirect (url_for('retroalimentar',))
                 return render_template("retroActividad.html",c=c,a=a,c_act=c_act,c_est=c_est,n=n)
             except:
                 flash("No se encontro el estudiante,rectifique los datos")
