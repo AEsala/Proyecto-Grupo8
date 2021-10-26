@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{  url_for('static',  filename='css/retroAlimenBusqueda.css')  }}">
 </head>
 
-
     <div class="component">
         <h1>Retroalimentar actividad</h1>
         <div class="mensajes">
@@ -33,28 +32,20 @@
                 <tbody id="tbody-retroalimentarActividad">
                                       
                     <tr>
-                        <td>Cod. curso:{{c}} <hr></td>
-                        
+                        <td>Cod. curso:{{data[0]}}</td>
                     </tr>
                     <tr>
-                        <td>Cod. asignatura:{{a}}<hr></td>
-                        
+                        <td>Cod. asignatura:{{data[1]}}</td>    
                     </tr>
                     <tr>
-                        <td>Cod. actividad: {{c_act}}<hr></td>
-                        
+                        <td>Cod. actividad: {{data[2]}}</td>
                     </tr>
                     <tr>
-                        <td>Cod. estudiante:{{c_est}}<hr></td>
-                        
+                        <td>Cod. estudiante{{data[7]}}</td>
                     </tr>
                     <tr>
-                        <td>Nota:{{n}}<hr></td>
-                        
-                    </tr> 
-
-                    
-                                                        
+                        <td>Nota:{{data[3]}}</td>
+                    </tr>                     
                 </tbody>
             </table>
         </div>

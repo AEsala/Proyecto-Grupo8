@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             dataSesion.append("user", user);
             dataSesion.append("pass", pass);
 
-            fetch("/valogin", {
+            fetch("https://127.0.0.1/valogin", {
                 method: "POST",
                 body: dataSesion
             }).then(res => res.json())
@@ -35,6 +35,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
 
                     setTimeout(() => window.location.href = "/DashBoard-Administrativo", 2000);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Inicio de Sesión Fallido!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             });
         });
@@ -80,23 +87,16 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
     /* Buscar actividad */
-    let buscarAct = "https://127.0.0.1//DashBoard-Administrativo/docentes/buscarActividad";
+    let buscarAct = "https://127.0.0.1/DashBoard-Administrativo/docentes/buscarActividad";
     if (url == buscarAct) {
         let formGetActivity = document.querySelector("#getActivity");
         formGetActivity.addEventListener("submit", function(e) {
-        e.preventDefault();
-        let cedula = document.getactivity.codUsuario.value;
-        let data = new FormData();
-        data.append("codUsuario", cedula);
+            e.preventDefault();
+            
+            let cedula = document.getactivity.codUsuario.value;
+            url = `https://127.0.0.1/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad/${cedula}`;
 
-        fetch("/DashBoard-Administrativo/docentes/buscarActividad", {
-            method: "POST",
-            body: data
-        }).then(res1 => res1.json())
-          .then(res1 => {
-            console.log(res1);
-            window.location.href = `https://127.0.0.1//DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad/${res1[7]}`;
-            });
+            window.location.href = decodeURI(url);
         });
     }
 }); 

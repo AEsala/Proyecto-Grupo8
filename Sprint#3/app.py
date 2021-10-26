@@ -1,7 +1,7 @@
 from types import MethodDescriptorType
 from flask import Flask, app, json, render_template, request, flash, redirect, url_for, jsonify, session
 from flask_session import Session
-from funcion import registro,login
+from funcion import registro, login
 import os
 
 
@@ -25,11 +25,19 @@ def index():
 
 """ Logins """
 # Login del Administrador
-@app.route('/LoginAdministrativo',methods=['GET','POST']) 
-def loginA(): 
+@app.route('/LoginAdministrativo', methods=['GET','POST']) 
+@app.route('/LoginAdministrativo/<sesion>', methods=['GET','POST']) 
+def loginA(sesion = None):
     form = login()
-    if form.validate_on_submit():
-	    return render_template('base.html')
+
+    if sesion != None:
+        if sesion == "signout":
+            session.clear()
+
+            return redirect("/LoginAdministrativo")
+    else:
+        if form.validate_on_submit():
+	        return render_template('base.html')
 
     return render_template('loginAdm.html', form = form)
 
@@ -58,6 +66,8 @@ def validarLogin():
     sesion = iniciarSesion(user, pss)
     if (sesion['Inicio'] == "Correcto"):
         session['nombre'] = sesion['datos'][2]
+    else:
+        sesion = {"Inicio": "error"}
     
     return(jsonify(sesion))
 
@@ -67,9 +77,13 @@ def validarLogin():
 
 """ DashBoards """
 # Dashboard - Administrador
-@app.route('/DashBoard-Administrativo',methods=['GET','POST']) 
+@app.route('/DashBoard-Administrativo', methods=['GET','POST']) 
 def dashboard(): 
-    return render_template('base.html')
+    if 'nombre' in session:
+        return render_template('base.html')
+    else: 
+        return redirect(url_for("loginA"))
+
 
 @app.route('/DashBoard-Administrativo/overview',methods=['GET'])
 def overview():
@@ -116,7 +130,7 @@ def nuevo_usuario():
         flash("Registro Exitoso")
         return redirect('registrar')
         
-    return render_template('registrar.html',form=form)
+    return render_template('registrar.html', form = form)
 
 @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
 def buscador():
@@ -135,46 +149,19 @@ def dashDocente():
 
 
 
+@app.route('/DashBoard-Docentes/buscarActividad', methods=['GET', 'POST'])
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad', methods=['GET', 'POST'])
 def buscarActiRetro():
-    if request.method == "POST":
-        codUsuario = request.form["codUsuario"]
-        details = getActivity(codUsuario)
-        
-        return(jsonify(details))
     return render_template("buscarActividad.html")
 
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['GET','POST'])
 def retroalimentar(cod):
-    if request.method == "POST":
-        if request.form['submit_button']== 'Buscar':
-            print("boton buscar")
-            codUsuario = request.form["codUsuario"]
-            details = getActivity(codUsuario)
-            print(details)
-            print("llego aqui")
-            try:
-                for i in range(len(details)):
-                    c_act=details[2]
-                    a=details[6]
-                    c=details[2]
-                    c_est=details[7]
-                    n=details[3]
-                flash("Usuario encontrado")   
-                  
-                # return redirect (url_for('retroalimentar',))
-                return render_template("retroActividad.html",c=c,a=a,c_act=c_act,c_est=c_est,n=n)
-            except:
-                flash("No se encontro el estudiante,rectifique los datos")
-                return render_template("buscarActividad.html") 
-        elif request.form['submit_button']=='Cancelar':
-            print("boton cancelar")
-        return "aqui va el dashboard del docente"
+    if request.method == "GET":
+        act = getActivity(cod)
+        return render_template("retroActividad.html", data = act)
     return render_template("buscarActividad.html")
 
-@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad',methods=['GET','POST'])
-def retroalimentar():
-    return render_template("retroActividad.html")        
+
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():

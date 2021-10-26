@@ -7,19 +7,26 @@ def iniciarSesion(user, pss):
     if (len(user) >= 5) and (len(pss) >= 8):
         cursor = get_db().cursor()
 
-        cursor.execute("SELECT * FROM Usuarios WHERE primerNombre = ?", [user])
+        cursor.execute("SELECT * FROM Usuarios WHERE primerNombre = ?;", [user])
         resultado = cursor.fetchone()
 
-        validate = check_password_hash(resultado[7], pss)
-
-        if validate == True:
-            return({
-                "datos": resultado,
-                "Inicio": "Correcto"
-            })
-        else:
+        if resultado == None:
             return({
                 "Inicio": "Error"
-            }) 
+            })
+        else:
+            validate = check_password_hash(resultado[7], pss)
+            if validate == True:
+                return({
+                    "datos": resultado,
+                    "Inicio": "Correcto"
+                })
+            else:
+                return({
+                    "Inicio": "Error"
+                })
+
     else:
-        return("No se pudo iniciar sesión")
+        return({
+            "Inicio": "Error"
+        })

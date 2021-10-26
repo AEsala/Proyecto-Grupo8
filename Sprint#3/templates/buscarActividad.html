@@ -1,18 +1,5 @@
-
 {% extends "baseDocente.html" %}
 {% block contenido %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar actividad</title>
-    <link rel="stylesheet" href="/static/css/retroAlimenBusqueda.css">
-    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
-</head>
-
-
-<body>
     <div class="component">
         <h1><img src="/static/images/lupa.png" alt="Imagen busqueda" width="40" >Buscar actividad</h1>
         <div class="mensajes">
@@ -23,20 +10,23 @@
             {% endfor %}
             {% endif %}
             {% endwith %} <br>
-            </div>
+        </div>
+        
         <div class="info">
-            <form name="getactivity"  id="getActivity"  method="POST" autocomplete="on">
-                <label>Curso:</label>  <input type="text" name="curso"><br><br>
-                <label>Cod. asignatura:</label> <input type="text" name="codAsignatura"><br><br>
-                <label>Cod. actividad:</label><input type="text" name="codActividad"><br><br>
-                <label>Cod. estudiante:</label><input type="text"name="codUsuario"><br><br>
-                <hr>
-                <input class="button"  name="submit_button" type="submit" formaction="" value="Cancelar">
-                <input class="button" name="submit_button" type="submit" value="Buscar">
+            <form method="post" name="getactivity" id="getActivity" autocomplete="on">
+                <div class="mb-3">
+                    <label>Cod. actividad:</label>
+                    <input type="text" name="codActividad" class="form-control">
+                </div>
 
+                <div class="mb-3">
+                    <label>Cod. estudiante:</label>
+                    <input type="text" name="codUsuario" class="form-control">
+                </div>
+
+                <input name="submit_button" type="submit" value="Cancelar" class="btn btn-primary">
+                <input name="submit_button" type="submit" value="Buscar" class="btn btn-primary">
             </form>
         </div>
     </div>
-</body>
-</html>
 {% endblock %}
