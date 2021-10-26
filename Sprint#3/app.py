@@ -135,7 +135,7 @@ def dashDocente():
 
 
 
-@app.route('/DashBoard-Administrativo/docentes/buscarActividad', methods=['GET', 'POST'])
+@app.route('/DashBoard-Docentes/buscarActividad', methods=['GET', 'POST'])
 def buscarActiRetro():
     if request.method == "POST":
         codUsuario = request.form["codUsuario"]
@@ -172,9 +172,7 @@ def retroalimentar(cod):
         return "aqui va el dashboard del docente"
     return render_template("buscarActividad.html")
 
-@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad',methods=['GET','POST'])
-def retroalimentar():
-    return render_template("retroActividad.html")        
+       
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():
