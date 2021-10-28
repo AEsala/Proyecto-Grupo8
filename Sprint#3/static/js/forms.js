@@ -33,9 +33,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         showConfirmButton: false,
                         timer: 1500
                     });
-
-                    setTimeout(() => window.location.href = "/DashBoard-Administrativo", 2000);
-                } else {
+                    if(url==admin){
+                        setTimeout(() => window.location.href = "/DashBoard-Administrativo", 2000);
+                         }
+                    else if(url==doc){
+                        setTimeout(() => window.location.href = "/DashBoard-Docentes", 2000);
+                        
+                    }
+                    } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Inicio de Sesión Fallido!',
@@ -87,14 +92,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
     /* Buscar actividad */
-    let buscarAct = "https://127.0.0.1/DashBoard-Administrativo/docentes/buscarActividad";
+    let buscarAct = "https://127.0.0.1/DashBoard-Docentes/buscarActividad";
     if (url == buscarAct) {
         let formGetActivity = document.querySelector("#getActivity");
         formGetActivity.addEventListener("submit", function(e) {
             e.preventDefault();
             
             let cedula = document.getactivity.codUsuario.value;
-            url = `https://127.0.0.1/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad/${cedula}`;
+            url = `https://127.0.0.1/DashBoard-Docentes/buscarActividad/retroalimentarActividad/${cedula}`;
 
             window.location.href = decodeURI(url);
         });

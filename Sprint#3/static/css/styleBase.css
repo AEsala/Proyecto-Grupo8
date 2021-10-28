@@ -26,11 +26,12 @@ body{
 #cerrarSesion{
     position: absolute;
     right: 20px;
-    height: 100px;
+    top: -20px;
+    height: 10px;
     display: flex;
     justify-content:center;
     align-items: center;
-    margin-right: 80px; 
+    margin-right: 70px; 
 }
 #cerrarSesion:hover{
     font-size: 17px;

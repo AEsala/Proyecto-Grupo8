@@ -7,7 +7,7 @@ import os
 
 """ Controladores """
 from validarForms import iniciarSesion
-from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity
+from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity,setnote
 
 
 
@@ -43,14 +43,33 @@ def loginA(sesion = None):
 
 # Login de Estudiantes
 @app.route('/LoginEstudiantes',methods=['GET','POST']) 
-def loginE(): 
+@app.route('/LoginEstudiantes/<sesion>', methods=['GET','POST'])
+def loginE(sesion=None): 
     form = login()
+    if sesion != None:
+        if sesion == "signout":
+            session.clear()
+            return redirect("/LoginEstudiantes")
+    else:
+        if form.validate_on_submit():
+	        return render_template('base.html')
     return render_template('loginEst.html',form=form)
 
 # Login de Docentes
 @app.route('/LoginDocentes',methods=['GET','POST']) 
-def loginD(): 
+@app.route('/LoginDocentes/<sesion>', methods=['GET','POST']) 
+def loginD(sesion=None): 
     form = login()
+   
+    if sesion != None:
+        if sesion == "signout":
+            session.clear()
+
+            return redirect("/LoginDocentes")
+    else:
+        if form.validate_on_submit():
+	        return render_template('baseDocentes.html')
+
     return render_template('loginDoc.html',form=form)
 
 
@@ -143,25 +162,37 @@ def buscador():
 
 
 #Mockups docente
+
 @app.route('/DashBoard-Docentes', methods=['GET', 'POST'])
 def dashDocente():
-    return render_template("baseDocente.html")
+    if 'nombre' in session:
+        return render_template('baseDocente.html')
+    else: 
+        return redirect(url_for("loginD"))
 
+@app.route('/DashBoard-Docentes/overview', methods=['GET', 'POST'])
+def doc_overview():
+    return render_template('overdocente.html')
 
 
 @app.route('/DashBoard-Docentes/buscarActividad', methods=['GET', 'POST'])
-
-@app.route('/DashBoard-Administrativo/docentes/buscarActividad', methods=['GET', 'POST'])
-
 def buscarActiRetro():
     return render_template("buscarActividad.html")
 
-@app.route('/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['GET','POST'])
+
+@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['GET','POST'])
 def retroalimentar(cod):
     if request.method == "GET":
         act = getActivity(cod)
         return render_template("retroActividad.html", data = act)
+
     return render_template("buscarActividad.html")
+
+@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['POST'])
+def actualizarNota(cod):
+    nota=request.form['nota-obtenida']
+   
+  
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():

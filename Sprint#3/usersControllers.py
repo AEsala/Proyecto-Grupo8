@@ -52,10 +52,20 @@ def getUser(cc):
 
 #Metodo para buscar actividad
 
-def getActivity(curso):
+def getActivity(codUsuario):
     connect = get_db()
     cursor = connect.cursor()
-    sql = "SELECT * FROM Detalle_Notas WHERE codUsuario = {}".format(curso)
+    sql = "SELECT * FROM Detalle_Notas WHERE codUsuario = {}".format(codUsuario)
     cursor.execute(sql)
     details = cursor.fetchone()
     return details
+
+#metodo para actualizar nota de actividad
+def setnote(cod,nota):
+    connect = get_db()
+    cursor = connect.cursor()
+    print(nota)
+    sql =  " UPDATE Detalle_Notas SET notaActividad={} WHERE codUsuario={}".format(nota,cod)
+    cursor.execute(sql)
+    connect.commit()
+    connect.close()
