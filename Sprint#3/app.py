@@ -1,13 +1,13 @@
 from types import MethodDescriptorType
 from flask import Flask, app, json, render_template, request, flash, redirect, url_for, jsonify, session
 from flask_session import Session
-from funcion import registro, login
+from funcion import registro, login,crearActivity
 import os
 
 
 """ Controladores """
 from validarForms import iniciarSesion
-from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity,setnote
+from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity,setnote,sql_insert_activity,getEstudiante,getAsignatura
 
 
 
@@ -155,6 +155,7 @@ def nuevo_usuario():
 def buscador():
     if request.method == "POST":
         cc = request.form["cc"]
+
         user = getUser(cc)
         return(jsonify(user))
     return render_template("buscar-Pro-Est.html")
@@ -176,6 +177,7 @@ def doc_overview():
 
 @app.route('/DashBoard-Docentes/buscarActividad', methods=['GET', 'POST'])
 def buscarActiRetro():
+
     return render_template("buscarActividad.html")
 
 
@@ -187,15 +189,47 @@ def retroalimentar(cod,idAct):
 
     return render_template("buscarActividad.html")
 
+#actualizar nota
 @app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['POST'])
 def actualizarNota(cod):
     nota=request.form['nota-obtenida']
+    #aun falta
+   
 
+#Crear actividad
+@app.route('/DashBoard-Docentes/crearActividad', methods=['GET','POST'])
+def crearAct():
+    form=crearActivity(request.form)
+    if request.method=='POST':
+        id=request.form['id_Act']
+        des=request.form['descripcion']
+        sql_insert_activity(id,des)
+        flash("Actividad creada")
+        return redirect('crearActividad')
 
+    return render_template('crearActividad.html',form=form)
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():
     return render_template("paginaBuscar.html")
+  
+
+@app.route('/DashBoard-Docentes/buscar/estudiante', methods=['GET', 'POST'])
+def buscar1():
+    if request.method == "POST":
+        cc = request.form["cc"]
+        user = getEstudiante(cc)
+        return(jsonify(user))
+  
+
+
+@app.route('/DashBoard-Docentes/buscar/asignatura', methods=['GET', 'POST'])
+def buscar2():
+    if request.method == "POST":
+        cc = request.form["cc"]
+        user = getAsignatura(cc)
+        return(jsonify(user))
+  
 
 
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda

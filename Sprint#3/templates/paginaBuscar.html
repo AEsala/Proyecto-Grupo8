@@ -3,9 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar</title>
     <link rel="stylesheet" href="/static/css/retroAlimenBusqueda.css">
 </head>
@@ -14,25 +11,38 @@
     <div class="component">
         <h1><img src="/static/images/lupa.png" alt="Lupa de busqueda" width="30">Buscar</h1>
         <div class="info">
-            <form class="busca" action="DashBoard-Administrativo/docentes/resultados" method="get" autocomplete="on">
-                <label>Codigo : </label><input type="text">
-                     <input class="button" type="submit" value="Buscar">
+            <form class="busca" name="getuser" id="getUser" method="post" autocomplete="on">
+                <label>iD : </label>
+                    <input type="text" name="cc" placeholder="Digita el id">
+                     <input class="button" type="submit" value="Buscar" >
                 <br>
                 <br>
-                    <input type="radio" name="busc" id="cursp">
-                <label for="curso">Curso</label>
-                    <input type="radio" name="busc">
+                 
+                    <input type="radio" name="busc" value="1">
                 <label>Estudiante</label>
-                    <input type="radio" name="busc">
+                    <input type="radio" name="busc" value="2">
                 <label>Asignatura</label><br>
 
             </form>
-
+            <br>
+           
+            <div class="containerBuscador2">
+                <div class="tablaBuscador">
+                  <table class="table table-bordered">
+                    <thead id="thead">
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                  </table>
+                </div>
+              </div>
         </div>
+          
+      
+
         
     </div>
 
-    
+    <script src="../static/js/forms.js"></script>
 </body>
 </html>
 {% endblock %}

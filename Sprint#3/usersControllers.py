@@ -52,10 +52,10 @@ def getUser(cc):
 
 #Metodo para buscar actividad
 
-def getActivity(codUsuario):
+def getActivity(codUsuario,idAct):
     connect = get_db()
     cursor = connect.cursor()
-    sql = "SELECT * FROM Detalle_Notas WHERE codUsuario = {}".format(codUsuario)
+    sql = "SELECT * FROM Detalle_Notas WHERE codUsuario = {} AND idActividad={}".format(codUsuario,idAct)
     cursor.execute(sql)
     details = cursor.fetchone()
     return details
@@ -69,3 +69,37 @@ def setnote(cod,nota):
     cursor.execute(sql)
     connect.commit()
     connect.close()
+
+
+#crear actividad 
+def sql_insert_activity( id, description):
+    
+    newAct = [id,description]
+
+    sql = " INSERT INTO Actividades (idActividad,descripcion) VALUES (?, ?); "
+
+    conn = get_db()       
+    cursor = conn.cursor()        
+    cursor.execute(sql,newAct)
+    print("actividad registrada")
+
+    conn.commit()
+    conn.close()
+
+
+def getEstudiante(cc):
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = "SELECT * FROM Usuarios WHERE codUsuario = {} AND idTipoUsuario=1".format(cc)
+    cursor.execute(sql)
+    user = cursor.fetchone()
+    return user
+
+def getAsignatura(id):
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = "SELECT * FROM Asignaturas WHERE idAsignatura={}".format(id) 
+    cursor.execute(sql)
+    actividad = cursor.fetchone()
+    return actividad
+

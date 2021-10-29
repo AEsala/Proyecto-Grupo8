@@ -1,0 +1,45 @@
+{% extends "baseDocente.html" %}
+{% block contenido %}
+
+
+    <head>
+        <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleRegistro.css')  }}">
+    </head>
+    <h4>Crear Actividad</h4>
+<div class="mensajes">
+{% with mensajes=get_flashed_messages() %}
+{% if mensajes %}
+{% for mensaje in mensajes %}
+    <p>{{mensaje}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %} <br>
+</div>
+    <form action="" method="POST" name="formactividad" id="formactividad">
+ 
+        <div id='main'>
+            <div class='container'>
+                <div id='divisionA'>
+                
+                   
+                    <p> <br>
+                       
+                        {{ form.id_Act.label }}<br />
+                        {{ form.id_Act(size=30)}}<br />
+                    </p>
+                    <p>
+                       
+                        {{ form.descripcion.label }}<br />
+                        {{ form.descripcion(size=30)}}<br />
+                    </p>
+                   
+            <div id='send'>
+                <br>
+                <br>
+               
+         <button class = "btn btn-lg btn-primary btn-block" type = "submit"> Crear </button> <br />
+            </div>
+    
+    </form>
+    </div>
+    {% endblock %}

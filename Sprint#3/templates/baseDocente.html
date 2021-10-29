@@ -14,7 +14,7 @@
   <script src="{{  url_for('static',  filename='js/forms.js')  }}"></script>
   <link rel="stylesheet" href="{{  url_for('static',  filename='css/styleBase.css')  }}">
   <link rel="stylesheet" href="/static/css/retroAlimenBusqueda.css">
-  <title>DashBoard-Administrativo</title>
+  <title>DashBoard-Docentes</title>
   <link rel="shortcut icon" href="/static/img/uam.ico">
 </head>
 
@@ -46,32 +46,34 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  href="/DashBoard-Docentes/buscarActividad">
+            <a class="nav-link" href="/DashBoard-Docentes/crearActividad">
+              Crear Actividad
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/DashBoard-Docentes/buscarActividad">
               Buscar Actividad
             </a>
           </li>
       
-     
-
+      
+      
           <li class="nav-item">
             <a class="nav-link " href="/DashBoard-Docentes/buscar">
               Buscar
             </a>
           </li>
         </ul>
-
+      
       </div>
-     
+      
       <div id="cerrarSesion">
-        <a class="nav-link "   href="/LoginDocentes/signout">
+        <a class="nav-link " href="/LoginDocentes/signout">
           <b>Cerrar Sesión</b>
         </a>
       </div>
-    </div>
-  </nav>
-
-  
-  
+      </div>
+      </nav>
   
 
   {% block contenido %}

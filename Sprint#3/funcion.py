@@ -29,3 +29,10 @@ class login(FlaskForm):
     password = PasswordField('Contraseña:', validators = [DataRequired(message='No dejar vacío, completar')])
     
     inicio_sesion = SubmitField('Iniciar Sesión')
+
+
+class crearActivity(FlaskForm):
+    id_Act= StringField('id_actividad :', validators = [DataRequired(message='No dejar vacío, completar')])
+    descripcion= StringField('descripción :', validators = [DataRequired(message='No dejar vacío, completar')])
+  
+
