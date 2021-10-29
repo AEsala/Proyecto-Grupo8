@@ -19,11 +19,19 @@ def sql_insert_users(primerNombre, segundoNombre, primerApellido, segundoApellid
 
 
 
-# Método para Obtener todos los Usuarios
+# Método para Obtener estudiantes
 def getUsers():
     connect = get_db()
     cursor = connect.cursor()
-    sql = " SELECT idUsuario, primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email FROM Usuarios "
+    sql = " SELECT idUsuario, primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email FROM Usuarios WHERE idTipoUsuario = 1"
+    cursor.execute(sql)
+    users = cursor.fetchall()
+    return users
+#metodo para obtener profesores
+def getUsers1():
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = " SELECT idUsuario, primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email FROM Usuarios WHERE idTipoUsuario = 2"
     cursor.execute(sql)
     users = cursor.fetchall()
 
@@ -35,10 +43,31 @@ def cantUsers():
     sql = " SELECT COUNT(*) FROM Usuarios WHERE idTipoUsuario = 1; "
     cursor.execute(sql)
     users = cursor.fetchone()
-
     return users
 
+def cantUsers1():
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = " SELECT COUNT(*) FROM Usuarios WHERE idTipoUsuario = 2; "
+    cursor.execute(sql)
+    users = cursor.fetchone()
+    return users
 
+def getCurso():
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = " SELECT idCurso,descripcion FROM Cursos"
+    cursor.execute(sql)
+    cursos = cursor.fetchall()
+    return cursos
+
+def cantCurso():
+    connect = get_db()
+    cursor = connect.cursor()
+    sql = " SELECT COUNT(*) FROM Cursos; "
+    cursor.execute(sql)
+    cursos = cursor.fetchone()
+    return cursos
 
 def getUser(cc):
     connect = get_db()
@@ -103,3 +132,13 @@ def getAsignatura(id):
     actividad = cursor.fetchone()
     return actividad
 
+#crear curso 
+def sql_insert_curso(id,descripcion):
+    newCurso = [id,descripcion]
+    sql = " INSERT INTO Cursos (idCurso,descripcion) VALUES (?, ?); "
+    conn = get_db()       
+    cursor = conn.cursor()        
+    cursor.execute(sql, newCurso)
+    print("Curso Registrado en la base de datos")
+    conn.commit()
+    conn.close()

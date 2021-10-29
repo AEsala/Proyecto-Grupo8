@@ -7,7 +7,7 @@ import os
 
 """ Controladores """
 from validarForms import iniciarSesion
-from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity,setnote,sql_insert_activity,getEstudiante,getAsignatura
+from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity,setnote,sql_insert_activity,getEstudiante,getAsignatura,getUsers1,cantUsers1,getCurso,cantCurso,sql_insert_curso
 
 
 
@@ -123,12 +123,35 @@ def estudiantes():
 
 @app.route('/DashBoard-Administrativo/docentes',methods=['GET','POST'])
 def docentes():
-    return render_template('docentes.html')
+    cantDoc = cantUsers1()
+    users = getUsers1()
+    data = {
+        "cant": cantDoc,
+        "users": users
+    }
+    return render_template('docentes.html',docente=data)
 
 
 @app.route('/DashBoard-Administrativo/cursos',methods=['GET','POST'])
 def cursos():
-    return render_template('cursos.html')
+    cantCur = cantCurso()
+    curso = getCurso()
+    data = {
+        "cant": cantCur,
+        "curso": curso
+    }
+    return render_template('cursos.html',cursos=data)
+
+@app.route('/DashBoard-Administrativo/cursos/crearCurso',methods=['GET','POST'])
+def crearcurso():
+    if request.method=='POST':
+        id=request.form['codCurso']
+        des=request.form['descripcion']
+        sql_insert_curso(id,des)
+        flash("Curso creado")
+        return redirect('crearCurso')
+
+    return render_template('crearcurso.html')
 
 
 @app.route('/DashBoard-Administrativo/registrar',methods=['GET','POST'])

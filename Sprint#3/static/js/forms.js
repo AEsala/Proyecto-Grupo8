@@ -72,6 +72,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }).then(res => res.json())
             .then(res => {
                 console.log(res);
+                let datos1 = `
+                <tr>
+                <th scope="col">Primer Nombre</th>
+                <th scope="col">Segundo Nombre</th>
+                <th scope="col">primer Apellido</th>
+                <th scope="col">Segundo Apellido</th>
+                <th scope="col">cedula</th>
+                <th scope="col">email</th>
+                </tr>
+                `;
 
                 let datos = `
                     <tr>
@@ -83,9 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         <td>${res[6]}</td>
                     </tr>
                 `;
-
+                let thead =document.querySelector('#thead')
                 let tbody = document.querySelector("#tbody");
                 tbody.innerHTML = datos;
+                thead.innerHTML=datos1;
             });
         });
     }
