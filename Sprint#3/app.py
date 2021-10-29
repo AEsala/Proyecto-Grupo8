@@ -157,7 +157,6 @@ def buscador():
         cc = request.form["cc"]
         user = getUser(cc)
         return(jsonify(user))
-
     return render_template("buscar-Pro-Est.html")
 
 
@@ -180,10 +179,10 @@ def buscarActiRetro():
     return render_template("buscarActividad.html")
 
 
-@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['GET','POST'])
-def retroalimentar(cod):
+@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>/<idAct>', methods=['GET','POST'])
+def retroalimentar(cod,idAct):
     if request.method == "GET":
-        act = getActivity(cod)
+        act = getActivity(cod,idAct)
         return render_template("retroActividad.html", data = act)
 
     return render_template("buscarActividad.html")
@@ -191,16 +190,13 @@ def retroalimentar(cod):
 @app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['POST'])
 def actualizarNota(cod):
     nota=request.form['nota-obtenida']
-   
-  
+
+
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():
     return render_template("paginaBuscar.html")
 
-@app.route('/DashBoard-Docentes/buscar/resultados', methods=['GET','POST'])
-def mostrarRes():
-    return render_template("resultadosBusqueda.html")
 
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
 
