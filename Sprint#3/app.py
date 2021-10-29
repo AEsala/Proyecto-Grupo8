@@ -144,7 +144,6 @@ def nuevo_usuario():
         email = request.form['email']
         clave = request.form['clave']
         typeUser = request.form["entradalista1"]
-        
         sql_insert_users(primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email, clave, typeUser)
         flash("Registro Exitoso")
         return redirect('registrar')
