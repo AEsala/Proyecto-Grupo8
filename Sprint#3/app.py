@@ -150,10 +150,7 @@ def dashDocente():
 
 
 @app.route('/DashBoard-Docentes/buscarActividad', methods=['GET', 'POST'])
-<<<<<<< HEAD
 @app.route('/DashBoard-Administrativo/docentes/buscarActividad', methods=['GET', 'POST'])
-=======
->>>>>>> 838a28d1cc5b6aef20efaf5d3515753359024005
 def buscarActiRetro():
     return render_template("buscarActividad.html")
 
@@ -164,11 +161,6 @@ def retroalimentar(cod):
         return render_template("retroActividad.html", data = act)
     return render_template("buscarActividad.html")
 
-<<<<<<< HEAD
-
-=======
-       
->>>>>>> 838a28d1cc5b6aef20efaf5d3515753359024005
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():
