@@ -1,4 +1,8 @@
-{% extends "baseDocente.html" %}
+{% if est == True %}
+    {% extends "baseEstudiantes.html" %}
+{% else %}
+    {% extends "baseDocente.html" %}
+{% endif %}
 {% block contenido %}
     <div class="component">
         <h1><img src="/static/images/lupa.png" alt="Imagen busqueda" width="40" >Buscar actividad</h1>
@@ -19,9 +23,14 @@
                     <input type="text" name="codActividad" class="form-control">
                 </div>
 
+                
                 <div class="mb-3">
                     <label>Cod. estudiante:</label>
-                    <input type="text" name="codUsuario" class="form-control">
+                    {%  if session['idEst'] != None %}
+                        <input type="text" name="codUsuario" class="form-control" value="{{ session['idEst'] }}" disabled="true">
+                    {% else %}
+                        <input type="text" name="codUsuario" class="form-control">
+                    {% endif %}
                 </div>
 
                 <input name="submit_button" type="submit" value="Cancelar" class="btn btn-primary">

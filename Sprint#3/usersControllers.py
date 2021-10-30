@@ -81,23 +81,39 @@ def getUser(cc):
 
 #Metodo para buscar actividad
 
-def getActivity(codUsuario,idAct):
+def getActivity(codUsuario, idAct):
     connect = get_db()
     cursor = connect.cursor()
-    sql = "SELECT * FROM Detalle_Notas WHERE codUsuario = {} AND idActividad={}".format(codUsuario,idAct)
-    cursor.execute(sql)
+    sql = " SELECT * FROM Detalle_Notas "
+    sql += " JOIN Comentarios ON Comentarios.idComentario = Detalle_Notas.idComentario "
+    sql += " WHERE codUsuario = ? AND idActividad = ?; "
+    cursor.execute(sql, [codUsuario, idAct])
     details = cursor.fetchone()
     return details
 
+
+
+
 #metodo para actualizar nota de actividad
-def setnote(cod,nota):
+def setNote(cod, nota):
     connect = get_db()
     cursor = connect.cursor()
-    print(nota)
-    sql =  " UPDATE Detalle_Notas SET notaActividad={} WHERE codUsuario={}".format(nota,cod)
-    cursor.execute(sql)
+    
+    sql =  " UPDATE Detalle_Notas SET notaActividad = ? WHERE codUsuario = ? "
+    cursor.execute(sql, [nota, cod])
     connect.commit()
     connect.close()
+
+
+def setComent(idComent, coment):
+    connect = get_db()
+    cursor = connect.cursor()
+    
+    sql =  " UPDATE Comentarios SET descripcion = ? WHERE idComentario = ?; "
+    cursor.execute(sql, [coment, idComent])
+    connect.commit()
+    connect.close()
+
 
 
 #crear actividad 

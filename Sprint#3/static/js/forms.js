@@ -107,15 +107,21 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
     /* Buscar actividad */
-    let buscarAct = "https://127.0.0.1/DashBoard-Docentes/buscarActividad";
-    if (url == buscarAct) {
+    let buscarAct = "https://127.0.0.1/DashBoard-Docentes/buscarActividad",
+        buscarActE = "https://127.0.0.1/DashBoard-Estudiantes/buscarActividad"
+    if (url == buscarAct || url == buscarActE) {
         let formGetActivity = document.querySelector("#getActivity");
         formGetActivity.addEventListener("submit", function(e) {
             e.preventDefault();
             
             let cedula = document.getactivity.codUsuario.value;
             let idAct=document.getactivity.codActividad.value;
-            url = `https://127.0.0.1/DashBoard-Docentes/buscarActividad/retroalimentarActividad/${cedula}/${idAct}`;
+            
+            if (url == buscarAct) {
+                url = `https://127.0.0.1/DashBoard-Docentes/buscarActividad/retroalimentarActividad/${cedula}/${idAct}`;
+            } else {
+                url = `https://127.0.0.1/DashBoard-Estudiantes/buscarActividad/retroalimentarActividad/${cedula}/${idAct}`;
+            }
 
             window.location.href = decodeURI(url);
         });
@@ -124,6 +130,11 @@ document.addEventListener("DOMContentLoaded", function() {
     /* Obtener Usuario */
     let buscarE = "https://127.0.0.1/DashBoard-Docentes/buscar";
     if (url == buscarE) {
+        /* let si = document.querySelector(".searchIcon");
+            si.addEventListener("click", function() {
+                alert("He sido presionado");
+            }); */
+
         let formGetUser = document.querySelector("#getUser");
         formGetUser.addEventListener("submit", function(e) {
             e.preventDefault();

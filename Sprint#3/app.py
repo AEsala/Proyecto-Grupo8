@@ -1,13 +1,13 @@
 from types import MethodDescriptorType
 from flask import Flask, app, json, render_template, request, flash, redirect, url_for, jsonify, session
 from flask_session import Session
-from funcion import registro, login,crearActivity
+from funcion import registro, login, crearActivity
 import os
 
 
 """ Controladores """
 from validarForms import iniciarSesion
-from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity,setnote,sql_insert_activity,getEstudiante,getAsignatura,getUsers1,cantUsers1,getCurso,cantCurso,sql_insert_curso
+import usersControllers
 
 
 
@@ -85,6 +85,11 @@ def validarLogin():
     sesion = iniciarSesion(user, pss)
     if (sesion['Inicio'] == "Correcto"):
         session['nombre'] = sesion['datos'][2]
+
+        if(sesion['datos'][8] == 1):
+            session['idEst'] = sesion['datos'][1]
+        else:
+            session['idEst'] = None
     else:
         sesion = {"Inicio": "error"}
     
@@ -104,15 +109,23 @@ def dashboard():
         return redirect(url_for("loginA"))
 
 
+
+
+
+
 @app.route('/DashBoard-Administrativo/overview',methods=['GET'])
 def overview():
     return render_template('overview.html')
 
 
+
+
+
+
 @app.route('/DashBoard-Administrativo/estudiantes',methods=['GET','POST'])
 def estudiantes():
-    cantEst = cantUsers()
-    users = getUsers()
+    cantEst = usersControllers.cantUsers()
+    users = usersControllers.getUsers()
     data = {
         "cant": cantEst,
         "users": users
@@ -121,10 +134,13 @@ def estudiantes():
 
 
 
+
+
+
 @app.route('/DashBoard-Administrativo/docentes',methods=['GET','POST'])
 def docentes():
-    cantDoc = cantUsers1()
-    users = getUsers1()
+    cantDoc = usersControllers.cantUsers1()
+    users = usersControllers.getUsers1()
     data = {
         "cant": cantDoc,
         "users": users
@@ -132,26 +148,38 @@ def docentes():
     return render_template('docentes.html',docente=data)
 
 
+
+
+
 @app.route('/DashBoard-Administrativo/cursos',methods=['GET','POST'])
 def cursos():
-    cantCur = cantCurso()
-    curso = getCurso()
+    cantCur = usersControllers.cantCurso()
+    curso = usersControllers.getCurso()
     data = {
         "cant": cantCur,
         "curso": curso
     }
     return render_template('cursos.html',cursos=data)
 
+
+
+
+
+
 @app.route('/DashBoard-Administrativo/cursos/crearCurso',methods=['GET','POST'])
 def crearcurso():
     if request.method=='POST':
         id=request.form['codCurso']
         des=request.form['descripcion']
-        sql_insert_curso(id,des)
+        usersControllers.sql_insert_curso(id,des)
         flash("Curso creado")
         return redirect('crearCurso')
 
     return render_template('crearcurso.html')
+
+
+
+
 
 
 @app.route('/DashBoard-Administrativo/registrar',methods=['GET','POST'])
@@ -167,11 +195,15 @@ def nuevo_usuario():
         email = request.form['email']
         clave = request.form['clave']
         typeUser = request.form["entradalista1"]
-        sql_insert_users(primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email, clave, typeUser)
+        usersControllers.sql_insert_users(primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email, clave, typeUser)
         flash("Registro Exitoso")
         return redirect('registrar')
         
     return render_template('registrar.html', form = form)
+
+
+
+
 
 @app.route('/DashBoard-Administrativo/buscador',methods=['GET','POST'])
 def buscador():
@@ -183,8 +215,11 @@ def buscador():
     return render_template("buscar-Pro-Est.html")
 
 
-#Mockups docente
 
+
+
+
+#Mockups docente
 @app.route('/DashBoard-Docentes', methods=['GET', 'POST'])
 def dashDocente():
     if 'nombre' in session:
@@ -192,31 +227,64 @@ def dashDocente():
     else: 
         return redirect(url_for("loginD"))
 
+
+
+
+
 @app.route('/DashBoard-Docentes/overview', methods=['GET', 'POST'])
 def doc_overview():
     return render_template('overdocente.html')
 
 
+
+
+
+@app.route('/DashBoard-Estudiantes/buscarActividad', methods=['GET', 'POST'])
 @app.route('/DashBoard-Docentes/buscarActividad', methods=['GET', 'POST'])
 def buscarActiRetro():
+    if session['idEst'] != None:
+        est = True
+    else:
+        est = None
+    return render_template("buscarActividad.html", est = est)
 
-    return render_template("buscarActividad.html")
 
 
+
+
+@app.route('/DashBoard-Estudiantes/buscarActividad/retroalimentarActividad/<cod>/<idAct>', methods=['GET','POST'])
 @app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>/<idAct>', methods=['GET','POST'])
 def retroalimentar(cod,idAct):
     if request.method == "GET":
-        act = getActivity(cod,idAct)
+        act = usersControllers.getActivity(cod, idAct)
         return render_template("retroActividad.html", data = act)
 
     return render_template("buscarActividad.html")
 
+
+
+
+
+
 #actualizar nota
-@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['POST'])
-def actualizarNota(cod):
-    nota=request.form['nota-obtenida']
-    #aun falta
+@app.route('/updateNota', methods=['POST'])
+def actualizarNota():    
+    cAct = request.form['codAct']
+    cEst = request.form['codEst']
+    cNota = request.form['nota']
+    idComent = int(request.form['idComent'])
+    coment = request.form['coment']
+
+    usersControllers.setNote(cEst, cNota)
+    usersControllers.setComent(idComent, coment)
+
+    return(jsonify({
+        "Up": "Correcto"
+    })) 
    
+
+
+
 
 #Crear actividad
 @app.route('/DashBoard-Docentes/crearActividad', methods=['GET','POST'])
@@ -225,33 +293,46 @@ def crearAct():
     if request.method=='POST':
         id=request.form['id_Act']
         des=request.form['descripcion']
-        sql_insert_activity(id,des)
+        usersControllers.sql_insert_activity(id,des)
         flash("Actividad creada")
         return redirect('crearActividad')
 
     return render_template('crearActividad.html',form=form)
+
+
+
+
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():
     return render_template("paginaBuscar.html")
   
 
+
+
+
 @app.route('/DashBoard-Docentes/buscar/estudiante', methods=['GET', 'POST'])
 def buscar1():
     if request.method == "POST":
         cc = request.form["cc"]
-        user = getEstudiante(cc)
+        user = usersControllers.getEstudiante(cc)
         return(jsonify(user))
   
+
+
 
 
 @app.route('/DashBoard-Docentes/buscar/asignatura', methods=['GET', 'POST'])
 def buscar2():
     if request.method == "POST":
         cc = request.form["cc"]
-        user = getAsignatura(cc)
+        user = usersControllers.getAsignatura(cc)
         return(jsonify(user))
   
+
+
+
+
 #Dasboard Estudiantes
 @app.route('/DashBoard-Estudiantes', methods=['GET','POST']) 
 def dashboardE(): 

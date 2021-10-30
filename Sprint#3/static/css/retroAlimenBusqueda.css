@@ -1,130 +1,23 @@
 div.component {
     margin: auto;
     width: 850px;
-    height: 480px;
     padding: 10px;
+    margin-bottom: 20px;
     background-color: #E8F0F2;
 }
-
 h1 {
     text-align: center;
     color: #053742;
-    /* font-family: 'Source Sans Pro', sans-serif; */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-div.info {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px gray;
-    background-color: #FFFFFF;
-    height: 240px;
-}
-
-p {
-    color: #053742;
-     font-family: 'Source Sans Pro', sans-serif; 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-input{
-    background-color: #E8F0F2;
-     border-style: unset; 
-    border-color: #053742;
-    
-}
-
-label {
-    
-    display: inline-block;
-    width: 150px;
-}
-
-.button{
-    background-color: rgb(24, 113, 230);
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: rgb(24, 113, 230);
-}
-img{
-    margin-right: 20px;
-}
-aside{
-    float: right;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 5px;
-    margin-right: 10px;
-
+div.actions {
+    display: flex;
+    justify-content: space-around;
 }
 
 textarea{
-    width: 400px;
-    height: 150px;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
     background-color: #E8F0F2;
-}
-
-.busca{
-    text-align: center;
-    margin-top: 0px;
-}
-
-.volver{
-    text-align: center;
-    background-color: rgb(24, 113, 230);
-    color: white;
-    margin-top: 35px;
-     
-}
-
-  .resultados{
-    background-color: #E8F0F2;
-    width: 550px;
-    height: 150px;
-}
-
-
-.mensajes{
-    padding: 10px;
-    width: 750px;
-    color: #000000;
-    background-color:transparent;
-    margin: auto;
-    font-weight: bold;
-    text-align: center;
-}
-
-#btncrearcurso{
-    background-color: rgb(24, 113, 230);
-    padding: 8px 18px;
-    text-align: center;
-    display: inline-block;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: absolute;
-    border-radius:6px;
-    top: 60%;
-    left: 35%;
-    font-size: 17px;
-    cursor:pointer;
-}
-#btnregresar{
-    background-color: rgb(24, 113, 230);
-    padding: 8px 18px;
-    text-align: center;
-    display: inline-block;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: absolute;
-    border-radius:6px;
-    top: 60%;
-    left: 55%;
-    font-size: 17px;
-    cursor:pointer;
-}
-
-div.info1 {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px gray;
-    background-color: #FFFFFF;
-    height: 340px;
 }
