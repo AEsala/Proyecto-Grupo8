@@ -30,6 +30,7 @@ input{
     background-color: #E8F0F2;
      border-style: unset; 
     border-color: #053742;
+    
 }
 
 label {
@@ -89,4 +90,41 @@ textarea{
     margin: auto;
     font-weight: bold;
     text-align: center;
+}
+
+#btncrearcurso{
+    background-color: rgb(24, 113, 230);
+    padding: 8px 18px;
+    text-align: center;
+    display: inline-block;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    border-radius:6px;
+    top: 60%;
+    left: 35%;
+    font-size: 17px;
+    cursor:pointer;
+}
+#btnregresar{
+    background-color: rgb(24, 113, 230);
+    padding: 8px 18px;
+    text-align: center;
+    display: inline-block;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    border-radius:6px;
+    top: 60%;
+    left: 55%;
+    font-size: 17px;
+    cursor:pointer;
+}
+
+div.info1 {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    background-color: #FFFFFF;
+    height: 340px;
 }

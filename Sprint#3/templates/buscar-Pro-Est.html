@@ -7,29 +7,22 @@
         type="text"
         name="cc"
         id="entradaBusqueda"
-        placeholder="Digita la cedula"
+        placeholder="Digita id del usuario"
       />
     </div>
 
     <div id="ctn-icono-busqueda">
-      <i class="fas fa-search" id="icono-busqueda"></i>
+      <!-- <i type="submit" class="fas fa-search" id="icono-busqueda"></i> -->
+      <input name="submit_button" type="submit" value="Buscar" class="btn btn-primary">
     </div>
 
-    <input type="submit" value="Buscar" />
+    
   </form>
 
   <div class="containerBuscador2">
     <div class="tablaBuscador">
       <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Primer Nombre</th>
-            <th scope="col">Segundo Nombre</th>
-            <th scope="col">primer Apellido</th>
-            <th scope="col">Segundo Apellido</th>
-            <th scope="col">cedula</th>
-            <th scope="col">email</th>
-          </tr>
+        <thead id="thead">
         </thead>
         <tbody id="tbody"></tbody>
       </table>

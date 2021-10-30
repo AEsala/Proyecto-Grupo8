@@ -1,6 +1,8 @@
 
 
 <head>
+    <title>R.Actividad</title>
+    
     <link rel="stylesheet" href="{{  url_for('static',  filename='css/retroAlimenBusqueda.css')  }}">
 </head>
 
@@ -18,33 +20,33 @@
         <section>
         <div class="info">
             <aside>
-                <form action="" method="get">
+                <form action="" method="post">
                     <p>Comentarios:</p>
                     <textarea name="mensaje"> </textarea><br>
-                    <input class="button" type="submit" formaction="/DashBoard-Docentes/buscarActividad" value="Cancelar">
-                    <input class="button" type="submit" value="Aceptar">
+                    <input class="button" name="submit-button"type="submit" formaction="/DashBoard-Docentes/buscarActividad" value="Cancelar">
+                    <input class="button" name="submit-button"type="submit" value="Aceptar">
                 </form>
                 </aside>
-                <p><h5>Informacion de actividad : </h5></p>
+                <p><h3>Informacion de actividad : </h3></p>
             <table>
                 <thead>
                 </thead>
                 <tbody id="tbody-retroalimentarActividad">
                                       
                     <tr>
-                        <td>Cod. curso:{{data[0]}}</td>
+                        <td>Cod. curso: {{data[0]}}</td>
                     </tr>
                     <tr>
-                        <td>Cod. asignatura:{{data[1]}}</td>    
+                        <td>Cod. asignatura: {{data[1]}}</td>    
                     </tr>
                     <tr>
                         <td>Cod. actividad: {{data[2]}}</td>
                     </tr>
                     <tr>
-                        <td>Cod. estudiante{{data[7]}}</td>
+                        <td>Cod. estudiante: {{data[7]}}</td>
                     </tr>
                     <tr>
-                        <td>Nota:{{data[3]}}</td>
+                        <td>Nota: <input type="text" id="nota-obtenida"name="nota-obtenida" class="form-control" value="{{data[3]}}"></td>
                     </tr>                     
                 </tbody>
             </table>

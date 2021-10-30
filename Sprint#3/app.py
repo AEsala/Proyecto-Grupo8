@@ -1,13 +1,13 @@
 from types import MethodDescriptorType
 from flask import Flask, app, json, render_template, request, flash, redirect, url_for, jsonify, session
 from flask_session import Session
-from funcion import registro, login
+from funcion import registro, login,crearActivity
 import os
 
 
 """ Controladores """
 from validarForms import iniciarSesion
-from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity
+from usersControllers import cantUsers, sql_insert_users, getUsers, getUser,getActivity,setnote,sql_insert_activity,getEstudiante,getAsignatura,getUsers1,cantUsers1,getCurso,cantCurso,sql_insert_curso
 
 
 
@@ -43,14 +43,33 @@ def loginA(sesion = None):
 
 # Login de Estudiantes
 @app.route('/LoginEstudiantes',methods=['GET','POST']) 
-def loginE(): 
+@app.route('/LoginEstudiantes/<sesion>', methods=['GET','POST'])
+def loginE(sesion=None): 
     form = login()
+    if sesion != None:
+        if sesion == "signout":
+            session.clear()
+            return redirect("/LoginEstudiantes")
+    else:
+        if form.validate_on_submit():
+	        return render_template("baseEstudiantes.html")
     return render_template('loginEst.html',form=form)
 
 # Login de Docentes
 @app.route('/LoginDocentes',methods=['GET','POST']) 
-def loginD(): 
+@app.route('/LoginDocentes/<sesion>', methods=['GET','POST']) 
+def loginD(sesion=None): 
     form = login()
+   
+    if sesion != None:
+        if sesion == "signout":
+            session.clear()
+
+            return redirect("/LoginDocentes")
+    else:
+        if form.validate_on_submit():
+	        return render_template('baseDocentes.html')
+
     return render_template('loginDoc.html',form=form)
 
 
@@ -104,12 +123,35 @@ def estudiantes():
 
 @app.route('/DashBoard-Administrativo/docentes',methods=['GET','POST'])
 def docentes():
-    return render_template('docentes.html')
+    cantDoc = cantUsers1()
+    users = getUsers1()
+    data = {
+        "cant": cantDoc,
+        "users": users
+    }
+    return render_template('docentes.html',docente=data)
 
 
 @app.route('/DashBoard-Administrativo/cursos',methods=['GET','POST'])
 def cursos():
-    return render_template('cursos.html')
+    cantCur = cantCurso()
+    curso = getCurso()
+    data = {
+        "cant": cantCur,
+        "curso": curso
+    }
+    return render_template('cursos.html',cursos=data)
+
+@app.route('/DashBoard-Administrativo/cursos/crearCurso',methods=['GET','POST'])
+def crearcurso():
+    if request.method=='POST':
+        id=request.form['codCurso']
+        des=request.form['descripcion']
+        sql_insert_curso(id,des)
+        flash("Curso creado")
+        return redirect('crearCurso')
+
+    return render_template('crearcurso.html')
 
 
 @app.route('/DashBoard-Administrativo/registrar',methods=['GET','POST'])
@@ -125,7 +167,6 @@ def nuevo_usuario():
         email = request.form['email']
         clave = request.form['clave']
         typeUser = request.form["entradalista1"]
-        
         sql_insert_users(primerNombre, segundoNombre, primerApellido, segundoApellido, codUsuario, email, clave, typeUser)
         flash("Registro Exitoso")
         return redirect('registrar')
@@ -136,39 +177,88 @@ def nuevo_usuario():
 def buscador():
     if request.method == "POST":
         cc = request.form["cc"]
+
         user = getUser(cc)
         return(jsonify(user))
-
     return render_template("buscar-Pro-Est.html")
 
 
 #Mockups docente
+
 @app.route('/DashBoard-Docentes', methods=['GET', 'POST'])
 def dashDocente():
-    return render_template("baseDocente.html")
+    if 'nombre' in session:
+        return render_template('baseDocente.html')
+    else: 
+        return redirect(url_for("loginD"))
 
+@app.route('/DashBoard-Docentes/overview', methods=['GET', 'POST'])
+def doc_overview():
+    return render_template('overdocente.html')
 
 
 @app.route('/DashBoard-Docentes/buscarActividad', methods=['GET', 'POST'])
-@app.route('/DashBoard-Administrativo/docentes/buscarActividad', methods=['GET', 'POST'])
 def buscarActiRetro():
+
     return render_template("buscarActividad.html")
 
-@app.route('/DashBoard-Administrativo/docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['GET','POST'])
-def retroalimentar(cod):
+
+@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>/<idAct>', methods=['GET','POST'])
+def retroalimentar(cod,idAct):
     if request.method == "GET":
-        act = getActivity(cod)
+        act = getActivity(cod,idAct)
         return render_template("retroActividad.html", data = act)
+
     return render_template("buscarActividad.html")
 
+#actualizar nota
+@app.route('/DashBoard-Docentes/buscarActividad/retroalimentarActividad/<cod>', methods=['POST'])
+def actualizarNota(cod):
+    nota=request.form['nota-obtenida']
+    #aun falta
+   
+
+#Crear actividad
+@app.route('/DashBoard-Docentes/crearActividad', methods=['GET','POST'])
+def crearAct():
+    form=crearActivity(request.form)
+    if request.method=='POST':
+        id=request.form['id_Act']
+        des=request.form['descripcion']
+        sql_insert_activity(id,des)
+        flash("Actividad creada")
+        return redirect('crearActividad')
+
+    return render_template('crearActividad.html',form=form)
 
 @app.route('/DashBoard-Docentes/buscar', methods=['GET', 'POST'])
 def buscar():
     return render_template("paginaBuscar.html")
+  
 
-@app.route('/DashBoard-Docentes/buscar/resultados', methods=['GET','POST'])
-def mostrarRes():
-    return render_template("resultadosBusqueda.html")
+@app.route('/DashBoard-Docentes/buscar/estudiante', methods=['GET', 'POST'])
+def buscar1():
+    if request.method == "POST":
+        cc = request.form["cc"]
+        user = getEstudiante(cc)
+        return(jsonify(user))
+  
+
+
+@app.route('/DashBoard-Docentes/buscar/asignatura', methods=['GET', 'POST'])
+def buscar2():
+    if request.method == "POST":
+        cc = request.form["cc"]
+        user = getAsignatura(cc)
+        return(jsonify(user))
+  
+#Dasboard Estudiantes
+@app.route('/DashBoard-Estudiantes', methods=['GET','POST']) 
+def dashboardE(): 
+    if 'nombre' in session:
+        return render_template('baseEstudiantes.html')
+    else: 
+        return redirect(url_for("loginE"))
 
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
 
