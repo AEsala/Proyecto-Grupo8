@@ -52,7 +52,7 @@ def loginE(sesion=None):
             return redirect("/LoginEstudiantes")
     else:
         if form.validate_on_submit():
-	        return render_template('base.html')
+	        return render_template("baseEstudiantes.html")
     return render_template('loginEst.html',form=form)
 
 # Login de Docentes
@@ -252,7 +252,13 @@ def buscar2():
         user = getAsignatura(cc)
         return(jsonify(user))
   
-
+#Dasboard Estudiantes
+@app.route('/DashBoard-Estudiantes', methods=['GET','POST']) 
+def dashboardE(): 
+    if 'nombre' in session:
+        return render_template('baseEstudiantes.html')
+    else: 
+        return redirect(url_for("loginE"))
 
 #mockups buscar Actividad y retroalimentar, y buscar y resultados de busqueda
 

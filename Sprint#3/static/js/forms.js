@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         setTimeout(() => window.location.href = "/DashBoard-Docentes", 2000);
                         
                     }
+                    else if(url==est){
+                        setTimeout(() => window.location.href = "/DashBoard-Estudiantes", 2000);
+                        
+                    }
                     } else {
                     Swal.fire({
                         icon: 'error',
